@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/common_top_edit_btns" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="15dp" >
+
+        <TextView
+            android:id="@+id/tv"
+            style="@style/fontStyleBlackMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/group_name"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/edit_group_name"
+            style="@style/EditBlackFontMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10" >
+
+            <requestFocus />
+        </EditText>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/choose_pic"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/local_pic"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        layout="@layout/include_contact_grid_pic"
+        android:background="@color/blue"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/u_pic"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        layout="@layout/include_contact_grid_pic"
+        android:background="@color/blue"
+        android:visibility="gone" />
+
+</LinearLayout>

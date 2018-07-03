@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/input_number_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <EditText
+            android:id="@+id/input_number_edittext"
+            style="@style/fontStyleBlackBig"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/search_background"
+            android:cursorVisible="true"
+            android:gravity="center"
+            android:paddingRight="60dp"
+            android:paddingLeft="10dp"
+            android:textCursorDrawable="@null"
+            android:hint="请输入号码"
+            android:inputType="phone" />
+
+        <ImageView
+            android:id="@+id/delnum_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/del_num_icon" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/callrecord_linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/callrecord_dial_linearlayout"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp" >
+
+            <TextView
+                android:id="@+id/all_textview"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/call_record_pressed"
+                android:gravity="center"
+                android:text="@string/all_callrecord" />
+
+            <TextView
+                android:id="@+id/received_textview"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/call_record_normal"
+                android:gravity="center"
+                android:text="@string/received_callrecord" />
+
+            <TextView
+                android:id="@+id/no_textview"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/call_record_normal"
+                android:gravity="center"
+                android:text="@string/no_callrecord" />
+
+            <TextView
+                android:id="@+id/dialed_textview"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/call_record_normal_last"
+                android:gravity="center"
+                android:text="@string/dialed_callrecord" />
+        </LinearLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/call_record_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/search_listview"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/callrecord_dial_linearlayout"
+        android:layout_below="@id/input_number_layout"
+        android:divider="@color/contact_fragment_bg_color"
+        android:dividerHeight="1dp"
+        android:listSelector="@color/transparent"
+        android:scrollbars="none"
+        android:visibility="gone" >
+    </ListView>
+
+    <LinearLayout
+        android:id="@+id/callrecord_dial_linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical" >
+
+        <include layout="@layout/include_dial" />
+
+        <ImageView
+            android:id="@+id/show_callrecord_dial_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@null"
+            android:src="@drawable/open_dialed_imageview" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,81 @@
+package com.jiaxun.uil.util;
+
+import com.jiaxun.uil.UiApplication;
+
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+
+/**
+ * 说明：
+ *
+ * @author  T
+ *
+ * @Date 2015-7-27
+ */
+public class NetUtil
+{
+    /**
+     * 方法说明 :判断是否有网络连接
+     * @return
+     * @author hz
+     * @Date 2015-7-27
+     */
+    public static boolean isNetworkConnected()
+    {
+        ConnectivityManager connectivity = (ConnectivityManager) UiApplication.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivity == null)
+        {
+            return false;
+        }
+        else
+        {
+            NetworkInfo[] info = connectivity.getAllNetworkInfo();
+            if (info != null)
+            {
+                for (int i = 0; i < info.length; i++)
+                {
+                    if (info[i].getState() == NetworkInfo.State.CONNECTED)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 方法说明 :
+     * @return
+     * @author hz
+     * @Date 2015-7-27
+     */
+    public static boolean isWifiConnected()
+    {
+        ConnectivityManager mConnectivityManager = (ConnectivityManager) UiApplication.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo mWiFiNetworkInfo = mConnectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        if (mWiFiNetworkInfo != null)
+        {
+            return mWiFiNetworkInfo.isAvailable();
+        }
+        return false;
+    }
+
+    /**
+     * 方法说明 :
+     * @return
+     * @author hz
+     * @Date 2015-7-27
+     */
+    public static boolean isMobileConnected()
+    {
+        ConnectivityManager mConnectivityManager = (ConnectivityManager) UiApplication.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo mMobileNetworkInfo = mConnectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if (mMobileNetworkInfo != null)
+        {
+            return mMobileNetworkInfo.isAvailable();
+        }
+        return false;
+    }
+}

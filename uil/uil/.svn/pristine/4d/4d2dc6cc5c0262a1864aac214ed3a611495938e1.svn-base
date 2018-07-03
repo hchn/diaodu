@@ -1,0 +1,93 @@
+package com.jiaxun.setting.ui.adapter;
+
+import java.util.ArrayList;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.jiaxun.uil.R;
+import com.jiaxun.uil.UiApplication;
+import com.jiaxun.uil.model.BaseListItem;
+import com.jiaxun.uil.util.enums.EnumContactEditType;
+
+/**
+ * ËµÃ÷£º°´¼ü±à¼­ ÊÊÅäÆ÷
+ *
+ * @author  HeZhen
+ *
+ * @Date 2015-5-15
+ */
+public class KeyEditAdapter extends BaseAdapter
+{
+    ArrayList<BaseListItem> contactList; 
+    private EnumContactEditType editType = EnumContactEditType.NORMAL;
+
+    public KeyEditAdapter(ArrayList<BaseListItem> contactList)
+    {
+        if (contactList == null)
+        {
+            contactList = new ArrayList<BaseListItem>();
+        }
+        this.contactList = contactList;
+    }
+    public void setEditType(EnumContactEditType type)
+    {
+        editType = type;
+    }
+    @Override
+    public int getCount()
+    {
+        return contactList.size();
+    }
+    @Override
+    public Object getItem(int position)
+    {
+        return null;
+    }
+
+    @Override
+    public long getItemId(int position)
+    {
+        return 0;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent)
+    {
+        ViewHolder mViewHolder = null;
+            if (convertView == null)
+            {
+                mViewHolder = new ViewHolder();
+                convertView = LayoutInflater.from(UiApplication.getCurrentContext()).inflate(R.layout.adapter_contact_grid, null);
+                mViewHolder.nameTextView = (TextView) convertView.findViewById(R.id.tv_name);
+                mViewHolder.checkBox = (ImageView) convertView.findViewById(R.id.check_btn);
+                mViewHolder.checkBox.setTag(position);
+                convertView.setTag(mViewHolder);
+            }
+            else
+            {
+                mViewHolder = (ViewHolder) convertView.getTag();
+            }
+            BaseListItem baseItem = contactList.get(position);
+            mViewHolder.nameTextView.setText(baseItem.getName());
+            if (editType == EnumContactEditType.SELECT)
+            {
+                mViewHolder.checkBox.setVisibility(View.VISIBLE);
+                mViewHolder.checkBox.setImageResource(baseItem.isChecked() ? R.drawable.checkbox_checked : R.drawable.checkbox_uncheck);
+            }
+            else
+            {
+                mViewHolder.checkBox.setVisibility(View.GONE);
+            }
+        return convertView;
+    }
+    class ViewHolder
+    {
+        TextView nameTextView;
+        ImageView checkBox;
+    }
+}

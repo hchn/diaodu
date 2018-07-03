@@ -1,0 +1,138 @@
+<?xml version="1.0"  encoding="GB2312" ?>
+
+<project default="Jenkins_Build" basedir=".">
+	<!-- 环境变量 -->
+    <property environment="env" />
+    <!-- 当前日期 -->
+    <tstamp />
+    <!-- 编译路径 -->
+    <property name="build.dir" value="${env.BUILD_DIR}"/>
+    <!-- 发布名称 -->
+    <property name="build.name" value="T30_C_V${env.VERSION}_D${DSTAMP}"/>
+    <!-- sdkUtil目录 -->
+    <property name="build.sdkutil" value="${build.dir}\sdkUtil"/>
+    <!-- sdkSip目录 -->
+    <property name="build.sdksip" value="${build.dir}\sdkSip"/>
+    <!-- sdkDcl目录 -->
+    <property name="build.sdkdcl" value="${build.dir}\sdkDcl"/>
+    <!-- sdkAcl目录 -->
+    <property name="build.sdkacl" value="${build.dir}\sdkAcl"/>
+    <!-- sdkScl目录 -->
+    <property name="build.sdkscl" value="${build.dir}\sdkScl"/>
+    <!-- uil目录 -->
+    <property name="build.app" value="${build.dir}\uil"/>
+    <!-- 发布路径 -->
+    <property name="dist.dir" value="${env.RELEASE_DIR}\${build.name}"/>
+    
+ 		<!-- 发布 -->
+    <target name="Jenkins_Build" >
+    		<!-- 编译sdkUtil -->
+        <ant antfile="${build.sdkutil}\build.xml" inheritAll="false">
+ 				</ant>
+ 				<!--拷贝新编译sdkUtil jar包	-->
+ 				<copy todir="${build.sdksip}\libs">
+           <fileset dir="${build.sdkutil}\dist">
+               <include name="*.jar" />
+           </fileset>
+       </copy>
+       <copy todir="${build.sdkdcl}\libs">
+           <fileset dir="${build.sdkutil}\dist">
+               <include name="*.jar" />
+           </fileset>
+       </copy>
+       <copy todir="${build.sdkacl}\libs">
+           <fileset dir="${build.sdkutil}\dist">
+               <include name="*.jar" />
+           </fileset>
+       </copy>
+       <copy todir="${build.sdkscl}\libs">
+           <fileset dir="${build.sdkutil}\dist">
+               <include name="*.jar" />
+           </fileset>
+       </copy>
+       <copy todir="${build.app}\libs">
+           <fileset dir="${build.sdkutil}\dist">
+               <include name="*.jar" />
+           </fileset>
+       </copy>
+       
+ 				<!-- 编译sdkSip -->
+        <ant antfile="${build.sdksip}\build.xml" inheritAll="false">
+ 				</ant>
+ 				<!--拷贝新编译sdkSip jar包	-->
+ 				<copy todir="${build.sdkacl}\libs">
+           <fileset dir="${build.sdksip}\dist">
+               <include name="*.jar" />
+           </fileset>
+       </copy>
+       <copy todir="${build.sdkscl}\libs">
+           <fileset dir="${build.sdksip}\dist">
+               <include name="*.jar" />
+           </fileset>
+       </copy>
+       <copy todir="${build.app}\libs">
+           <fileset dir="${build.sdksip}\dist">
+               <include name="*.jar" />
+           </fileset>
+       </copy>
+       
+       <!-- 编译sdkDcl -->
+        <ant antfile="${build.sdkdcl}\build.xml" inheritAll="false">
+ 				</ant>
+ 				<!--拷贝新编译sdkDcl jar包	-->
+ 				<copy todir="${build.sdkacl}\libs">
+           <fileset dir="${build.sdkdcl}\dist">
+               <include name="*.jar" />
+           </fileset>
+       </copy>
+       <copy todir="${build.sdkscl}\libs">
+           <fileset dir="${build.sdkdcl}\dist">
+               <include name="*.jar" />
+           </fileset>
+       </copy>
+       <copy todir="${build.app}\libs">
+           <fileset dir="${build.sdkdcl}\dist">
+               <include name="*.jar" />
+           </fileset>
+       </copy>
+       
+       <!-- 编译sdkAcl -->
+        <ant antfile="${build.sdkacl}\build.xml" inheritAll="false">
+ 				</ant>
+ 				<!--拷贝新编译sdkAcl jar包	-->
+ 				<copy todir="${build.sdkscl}\libs">
+           <fileset dir="${build.sdkacl}\dist">
+               <include name="*.jar" />
+           </fileset>
+       </copy>
+       <copy todir="${build.app}\libs">
+           <fileset dir="${build.sdkacl}\dist">
+               <include name="*.jar" />
+           </fileset>
+       </copy>
+       
+       <!-- 编译sdkScl -->
+        <ant antfile="${build.sdkscl}\build.xml" inheritAll="false">
+ 				</ant>
+ 				<!--拷贝新编译sdkScl jar包	-->
+       <copy todir="${build.app}\libs">
+           <fileset dir="${build.sdkscl}\dist">
+               <include name="*.jar" />
+           </fileset>
+       </copy>
+       
+       <!-- 编译keyPocDroid -->
+        <ant antfile="${build.app}\build.xml" target="release" inheritAll="false">
+ 				</ant>
+ 				
+ 				<mkdir dir="${dist.dir}" />
+ 				
+ 				<!--发布	-->
+       <copy todir="${dist.dir}">
+           <fileset dir="${build.app}\bin">
+               <include name="${build.name}.apk" />
+           </fileset>
+       </copy>
+ 				
+    </target>
+</project>

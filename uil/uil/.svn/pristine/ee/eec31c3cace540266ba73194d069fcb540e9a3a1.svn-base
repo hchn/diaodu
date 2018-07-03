@@ -1,0 +1,54 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="蓝牙"
+             style="@style/fontStyleWhiteMedium"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <Button
+            android:id="@+id/cancelButton"
+            style="@style/fontStyleWhiteMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:text="返回" />
+
+        <Button
+            android:id="@+id/bluetoothButtton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/boolean_btn" />
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/btListView"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dip" >
+    </ListView>
+
+    <Button
+        android:id="@+id/btSerch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         style="@style/fontStyleWhiteMedium"
+        android:text="搜索设备" />
+
+</LinearLayout>

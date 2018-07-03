@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/fontStyleWhiteBig"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp" >
+
+            <LinearLayout
+                android:id="@+id/linearLayout_normal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp" >
+
+                <Button
+                    android:id="@+id/add_vs_user"
+                    style="@style/fontStyleWhiteMedium"
+                    android:background="#729ad8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="添加监控" />
+
+                <Button
+                    android:id="@+id/removeVsUser"
+                    style="@style/fontStyleWhiteMedium"
+                    android:background="#729ad8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    
+                    android:text="移除用户" />
+
+                <Button
+                    android:id="@+id/vs_finish"
+                     style="@style/fontStyleWhiteMedium"
+                    android:background="#729ad8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="结束监控" />
+
+               
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout_delete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
+                android:orientation="horizontal"
+                android:padding="5dp" >
+
+                <Button
+                    android:id="@+id/sureDelete"
+                    style="@style/fontStyleWhiteMedium"
+                    android:background="#729ad8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="确定"
+                     />
+
+                <Button
+                    android:id="@+id/selectAll"
+                    style="@style/fontStyleWhiteMedium"
+                    android:background="#729ad8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="全选"
+                     />
+
+                <Button
+                    android:id="@+id/cancelDelete"
+                   style="@style/fontStyleWhiteMedium"
+                    android:background="#729ad8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="取消"
+                      />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/loop_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+              >
+
+            <TextView
+                style="@style/fontStyleBlackMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="轮巡时间"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <Spinner
+                android:id="@+id/spinner_time"
+                style="@style/fontStyleBlackMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/buttonStart"
+               style="@style/fontStyleWhiteMedium"
+                    android:background="#729ad8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="启动" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.jiaxun.uil.ui.view.DraggableGridView
+        android:id="@+id/group_grid"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:numColumns="4" >
+    </com.jiaxun.uil.ui.view.DraggableGridView>
+
+</LinearLayout>

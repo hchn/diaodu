@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/iv_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/contact_switch_grid" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1" >
+
+        <com.jiaxun.uil.ui.widget.sticky.StickyGridHeadersGridView
+            android:id="@+id/asset_grid"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:clipToPadding="false"
+            android:columnWidth="100dip"
+            android:numColumns="auto_fit"
+            android:padding="16dp" />
+
+        <TextView
+            android:id="@+id/dialog"
+            android:layout_width="80.0dip"
+            android:layout_height="80.0dip"
+            android:layout_gravity="center"
+            android:background="@drawable/show_head_toast_bg"
+            android:gravity="center"
+            android:textColor="#ffffffff"
+            android:textSize="30.0dip"
+            android:visibility="invisible" />
+
+        <com.jiaxun.uil.ui.view.AzSideBar
+            android:id="@+id/sideBar"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginBottom="40dp"
+            android:layout_marginTop="40dp" />
+
+    </FrameLayout>
+
+</LinearLayout>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="10dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp" >
+
+            <HorizontalScrollView
+                android:id="@+id/hscroll_grouplevel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" >
+
+                <LinearLayout
+                    android:id="@+id/groups_level_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <EditText
+                android:id="@+id/et_search"
+                style="@style/EditBlackFontMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/contact_search"
+                android:hint="\t\t搜索"
+                android:visibility="gone" >
+            </EditText>
+
+            <ImageView
+                android:id="@+id/iv_edit_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/ic_edit_clear"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/iv_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/contact_switch_az"
+                android:text="ABC切换"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <GridView
+            android:id="@+id/group_grid"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:numColumns="6" />
+
+    </LinearLayout>
+
+    <include layout="@layout/empty" />
+
+</RelativeLayout>

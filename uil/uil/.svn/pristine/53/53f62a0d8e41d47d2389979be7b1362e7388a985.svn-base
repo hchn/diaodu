@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/contact_fragment_bg_color"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical" >
+
+        <LinearLayout
+            android:id="@+id/username_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp" >
+
+            <TextView
+                style="@style/fontStyleWhiteBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="名称或号码:"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/search_callrecord_edittext"
+                style="@style/fontStyleWhiteBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/setting_search_bg"
+                android:drawableRight="@drawable/setting_callrecord_search_normal"
+                android:gravity="center"
+                android:hint="输入名称/号码" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/calltype_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/username_layout"
+            android:orientation="horizontal"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp" >
+
+            <TextView
+                style="@style/fontStyleWhiteBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="类型:"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/type_textview"
+                style="@style/fontStyleWhiteBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="全部" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/starttime_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/calltype_layout"
+            android:orientation="horizontal"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp" >
+
+            <TextView
+                style="@style/fontStyleWhiteBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="开始时间:" />
+
+            <TextView
+                android:id="@+id/starttime_textview"
+                style="@style/fontStyleWhiteBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/endtime_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/starttime_layout"
+            android:orientation="horizontal"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp" >
+
+            <TextView
+                style="@style/fontStyleWhiteBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="结束时间:" />
+
+            <TextView
+                android:id="@+id/endtime_textview"
+                style="@style/fontStyleWhiteBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/search_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/endtime_layout"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp" >
+
+            <ImageView
+                android:id="@+id/search_imageview"
+                style="@style/fontStyleWhiteBig"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/setting_callrecord_search_selector" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/export_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/search_layout"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp" >
+
+            <ImageView
+                android:id="@+id/export_imageview"
+                style="@style/fontStyleWhiteBig"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/setting_callrecord_export_selector" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <DatePicker
+            android:id="@+id/date_start_picker"
+            style="@style/fontStyleWhiteBig"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:calendarViewShown="false" />
+
+        <DatePicker
+            android:id="@+id/date_stop_picker"
+            style="@style/fontStyleWhiteBig"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:calendarViewShown="false" />
+    </LinearLayout>
+
+    <include layout="@layout/include_screen_fragment_listview" />
+
+</LinearLayout>

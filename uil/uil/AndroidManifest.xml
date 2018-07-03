@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jiaxun.uil"
+    android:versionCode="6"
+    android:versionName="T30_C_V0.8_D20151013" >
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true" />
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.SET_PROCESS_FOREGROUND" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.RECORD_VIDEO" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+
+    <instrumentation
+        android:name="android.test.InstrumentationTestRunner"
+        android:targetPackage="com.jiaxun.uil" />
+    <instrumentation android:name="android.test.InstrumentationTestRunner" android:targetPackage="com.jiaxun.uil"></instrumentation>
+
+    <application
+        android:name="com.jiaxun.uil.UiApplication"
+        android:allowBackup="true"
+        android:configChanges="fontScale"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        >
+        <activity
+            android:name="com.jiaxun.uil.ui.screen.HomeActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleInstance"
+            android:screenOrientation="landscape"
+             android:theme="@style/FontBig" >
+            <intent-filter>
+
+                <!-- <category android:name="android.intent.category.HOME" /> -->
+
+                <action android:name="android.intent.action.MAIN" />
+
+                <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.jiaxun.setting.ui.SettingActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="landscape" 
+            android:theme="@style/FontBig">
+        </activity>
+        <activity
+            android:name="com.jiaxun.videoplayer.VideoActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/Transparent"
+             >
+            <intent-filter>
+                <action android:name="com.jiaxun.action_video_player" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.jiaxun.category_video_player" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name="com.jiaxun.uil.GlobalReceiver"
+            android:enabled="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.ACTION_SHUTDOWN" />
+                <action android:name="android.intent.action.REBOOT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="jiaxun.action.leftmodule.number.down" />
+                <action android:name="jiaxun.action.rightmodule.number.down" />
+                <action android:name="jiaxun.action.leftmodule.handle.insert" />
+                <action android:name="jiaxun.action.leftmodule.handle.pullout" />
+                <action android:name="jiaxun.action.leftmodule.insert" />
+                <action android:name="jiaxun.action.leftmodule.pullout" />
+                <action android:name="jiaxun.action.leftmodule.handsfree.down" />
+                <action android:name="jiaxun.action.leftmodule.handsfree.up" />
+                <action android:name="jiaxun.action.leftmodule.mute.down" />
+                <action android:name="jiaxun.action.leftmodule.mute.up" />
+                <action android:name="jiaxun.action.leftmodule.cableheadset.insert" />
+                <action android:name="jiaxun.action.leftmodule.cableheadset.pullout" />
+                <action android:name="jiaxun.action.rightmodule.handle.insert" />
+                <action android:name="jiaxun.action.rightmodule.handle.pullout" />
+                <action android:name="jiaxun.action.rightmodule.insert" />
+                <action android:name="jiaxun.action.rightmodule.pullout" />
+                <action android:name="jiaxun.action.rightmodule.handsfree.down" />
+                <action android:name="jiaxun.action.rightmodule.handsfree.up" />
+                <action android:name="jiaxun.action.rightmodule.mute.down" />
+                <action android:name="jiaxun.action.rightmodule.mute.up" />
+                <action android:name="jiaxun.action.rightmodule.cableheadset.insert" />
+                <action android:name="jiaxun.action.rightmodule.cableheadset.pullout" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="com.jiaxun.sdk.dcl.util.db.DBProvider"
+            android:authorities="com.jiaxun.uil.t30"
+            android:exported="false" >
+        </provider>
+
+        <uses-library android:name="android.test.runner" />
+
+        <service android:name="com.jiaxun.sdk.util.httpserver.HttpServerService" />
+    </application>
+
+</manifest>

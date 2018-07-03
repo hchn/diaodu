@@ -1,0 +1,118 @@
+<?xml version="1.0"  encoding="GB2312" ?>
+
+<project default="Distribute" basedir=".">
+
+<!--
+    ===================================================================
+      定义属性（property tasks）
+      最好把用到的路径呀，名称呀都在这里定义成全局变量
+      例：定义
+          <property name="a" value="hello"/>
+      以后就可以这样用它：
+          <property name="b" value="${a}/b"/>
+      现在:b=="hello/b"
+    ===================================================================
+-->
+
+    <!-- 主要的系统环境属性 -->
+    <property environment="env"/><!--取window,unix...的环境变量-->
+    <property name="java.home" value="${env.JAVA_HOME}"/>
+    <property name="ant.home"  value="${env.ANT_HOME}"/>
+
+    <!-- 主要的sdk环境属性 -->
+    <property name="sdk.name"      value="sdkScl"/>
+    <property name="sdk.jar"       value="${sdk.name}.jar"/>
+    <property name="sdk.copyright" value=" Copyright (c) 2013 The PHOTON TEC.  All rights reserved."/>
+
+    <!-- sdk中src的属性 -->
+    <property name="src.dir"    value="src" />
+    
+    <!--app用到的lib-->
+    <property name="lib.dir" value="${env.ANDROID_SDK_HOME}/platforms/android-17"/>
+
+    <!-- sdk的build目录中 -->
+    <property name="build.dir"      value="build" />
+    <property name="build.classes"  value="${build.dir}/classes"/>
+    
+    <!-- sdk的dist (distribution) 目录中 -->
+    <property name="dist.dir"      value="dist"/>
+
+    <!--
+    定义一组路径以后可以通过id重用这组路径
+    -->
+    <path id="classpath">
+        <!-- classpath，编译的时候要用 -->
+        <pathelement path="${build.classes}"/> 
+        <!-- location属性指定了相对于project基目录的一个文件和目录 -->
+        <pathelement location="${java.home}/lib/tools.jar"/> 
+        <!-- path属性接受逗号或分号分隔的一个位置列表 -->
+        <fileset dir="${lib.dir}">
+	      	<include name="**/*.jar"/>
+	      </fileset>
+	      <!-- path属性接受逗号或分号分隔的一个位置列表 -->
+        <fileset dir="libs">
+	      	<include name="**/*.jar"/>
+	      </fileset>
+    </path>
+
+<!--
+    ===================================================================
+      init 准备目录(File Tasks)
+      主要的目录结构通常是不会变的，一起生成他们
+    ===================================================================
+-->
+    <target name="init">
+    
+    		<!-- 清除以前发布目录 -->
+        <delete dir="${dist.dir}" failonerror="false" />
+        <delete dir="${build.dir}" failonerror="false" />
+
+        <!-- 准备目录 -->
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${build.classes}"/>
+        <mkdir dir="${dist.dir}"/>
+
+    </target>
+
+<!--
+    ===================================================================
+      Build the code (Compile Tasks,File Tasks)
+    ===================================================================
+-->
+    <target name="build" depends="init">
+        <!-- 编译 -->
+        <javac srcdir="${src.dir}" destdir="${build.classes}" debug="on" fork="on">
+            <classpath refid="classpath"/>
+        </javac>
+    </target>
+
+<!--
+    ===================================================================
+      打包文档(Archive Tasks)
+      Create the project jars: xxx1.jar and xxx2.jar
+    ===================================================================
+-->
+   <target name="jars" depends="build">
+        <jar basedir="${build.classes}" jarfile="${dist.dir}/${sdk.jar}"/>
+    </target>
+   
+<!--
+     ===================================================================
+     当运行ant的时候没有指定运行哪个target时会自动执行在progject的
+     default属性中设置的那个target,此处就会运行这个target 
+     这个target是用于"Distribute"
+     ===================================================================
+   -->
+
+   <target name="Distribute"  depends="init,jars" >
+       
+       <!--
+		     ===================================================================
+		     清除编译中创建的build文件夹及下面的所有文件
+		     ===================================================================
+		   -->
+        <delete dir="${build.dir}">  
+       </delete>     
+   </target>
+ 
+</project>

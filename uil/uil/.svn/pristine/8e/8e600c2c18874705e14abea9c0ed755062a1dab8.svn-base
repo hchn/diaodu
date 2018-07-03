@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/list_bg" >
+
+    <RelativeLayout
+        android:id="@+id/call_list_status"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/call_list_status_height" >
+
+        <ImageView
+            android:id="@+id/caller_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/call_list_icon_padding"
+            android:src="@drawable/head_default" />
+
+        <LinearLayout
+            android:id="@+id/layout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/caller_icon"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/caller_name"
+                style="@style/fontStyleWhiteBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="用户001" />
+
+            <TextView
+                android:id="@+id/caller_number"
+                style="@style/fontStyleWhiteMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="13523943456" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/call_list_icon_padding"
+            android:layout_toLeftOf="@+id/layout3"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/call_status"
+                style="@style/fontStyleWhiteMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="通话中" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:padding="@dimen/call_list_icon_padding" >
+
+            <TextView
+                android:id="@+id/call_list_timer"
+                style="@style/fontStyleWhiteMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="01:45" />
+
+            <TextView
+                android:id="@+id/call_priority"
+                style="@style/fontStyleWhiteMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="3级" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/call_list_status"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:id="@+id/sub_operation"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/call_list_ctr_height"
+            android:layout_gravity="right"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/closebell"
+                style="@style/fontStyleWhiteMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/call_control_btn_select_bg"
+                android:drawablePadding="-15dp"
+                android:drawableTop="@drawable/func_closebell_normal"
+                android:paddingTop="20dp"
+                android:text="闭铃" />
+
+            <Button
+                android:id="@+id/answer"
+                style="@style/fontStyleWhiteMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/call_control_btn_click_bg"
+                android:drawablePadding="-15dp"
+                android:paddingTop="20dp"
+                android:text="接听" />
+
+            <Button
+                android:id="@+id/hangup"
+                style="@style/fontStyleWhiteMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/call_control_btn_click_bg"
+                android:drawablePadding="-15dp"
+                android:paddingTop="20dp"
+                android:text="挂断" />
+
+            <Button
+                android:id="@+id/hold"
+                style="@style/fontStyleWhiteMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/call_control_btn_select_bg"
+                android:drawablePadding="-15dp"
+                android:paddingTop="20dp"
+                android:text="保持" />
+
+            <Button
+                android:id="@+id/mute"
+                style="@style/fontStyleWhiteMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/call_control_btn_select_bg"
+                android:drawablePadding="-15dp"
+                android:drawableTop="@drawable/call_mute"
+                android:paddingTop="20dp"
+                android:text="静音开" />
+
+            <Button
+                android:id="@+id/speaker"
+                style="@style/fontStyleWhiteMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/call_control_btn_select_bg"
+                android:drawablePadding="-15dp"
+                android:drawableTop="@drawable/call_speaker"
+                android:paddingTop="20dp"
+                android:text="免提" />
+
+            <Button
+                android:id="@+id/call2conf"
+                style="@style/fontStyleWhiteMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/call_control_btn_click_bg"
+                android:drawablePadding="-15dp"
+                android:drawableTop="@drawable/call_speaker"
+                android:paddingTop="20dp"
+                android:text="转会议" />
+
+            <Button
+                android:id="@+id/intoconf"
+                style="@style/fontStyleWhiteMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/call_control_btn_click_bg"
+                android:drawablePadding="-15dp"
+                android:drawableTop="@drawable/call_speaker"
+                android:paddingTop="20dp"
+                android:text="入会" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</RelativeLayout>

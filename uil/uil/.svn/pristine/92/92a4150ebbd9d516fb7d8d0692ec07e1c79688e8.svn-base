@@ -1,0 +1,124 @@
+package com.jiaxun.uil.ui.fragment;
+
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.TextView;
+
+import com.jiaxun.sdk.util.constant.CommonConstantEntry;
+import com.jiaxun.sdk.util.log.Log;
+import com.jiaxun.uil.R;
+import com.jiaxun.uil.util.enums.EnumContactSelectType;
+
+/**
+ * 说明：
+ *
+ * @author  chaimb
+ *
+ * @Date 2015-9-21
+ */
+public class ContactSelectAddFragment extends BaseFragment implements OnClickListener
+{
+
+    private static final String TAG = ContactSelectAddFragment.class.getName();
+    private TextView addressListAddTextView;
+    private TextView dialAddTextView;
+
+    private Button cancelButton;
+    private Button sureButton;
+
+    private int columns = -1;
+    private EnumContactSelectType dataType = EnumContactSelectType.TEMP_CONF;
+
+    @Override
+    public int getLayoutView()
+    {
+        return R.layout.fragment_select_add_contact;
+    }
+
+    @Override
+    public void initComponentViews(View view)
+    {
+        Log.info(TAG, "initComponentViews::");
+        if (getArguments() != null)
+        {
+            columns = getArguments().getInt("gridColumns");
+            dataType = EnumContactSelectType.values()[getArguments().getInt(CommonConstantEntry.DATA_TYPE)];
+        }
+
+        addressListAddTextView = (TextView) view.findViewById(R.id.address_list_add_textview);
+        dialAddTextView = (TextView) view.findViewById(R.id.dial_add_textview);
+        cancelButton = (Button) view.findViewById(R.id.btn_cancel);
+        sureButton = (Button) view.findViewById(R.id.btn_create);
+        sureButton.setVisibility(View.GONE);
+//        contactEdit.setVisibility(View.GONE);
+//        sureButton.setText("下一步");
+
+        setListener();
+    }
+
+    private void setListener()
+    {
+        cancelButton.setOnClickListener(this);
+        sureButton.setOnClickListener(this);
+        addressListAddTextView.setOnClickListener(this);
+        dialAddTextView.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View v)
+    {
+        switch (v.getId())
+        {
+            case R.id.btn_cancel:
+                parentActivity.backToPreFragment(R.id.container_right_content);
+                break;
+            case R.id.address_list_add_textview:
+                // 从通讯录添加
+                if (columns != -1)
+                {
+                    loadContactSelectView(dataType, columns);
+                }
+                break;
+            case R.id.dial_add_textview:
+//                parentActivity.removeFragmentFromBackStack(R.id.container_right_content, ContactSelectAddFragment.class);
+                // 从拨号盘添加
+                loadSimpleDial(dataType);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    /**
+     * 方法说明 :从通讯录添加
+     * @param eventType
+     * @param columns
+     * @author chaimb
+     * @Date 2015-9-21
+     */
+    private void loadContactSelectView(EnumContactSelectType eventType, int columns)
+    {
+        Bundle data = new Bundle();
+        data.putInt("gridColumns", columns);
+        data.putInt(CommonConstantEntry.DATA_TYPE, eventType.ordinal());
+        parentActivity.turnToFragmentStack(R.id.container_right_content, ContactSelectFragment.class, data);
+    }
+
+    /**
+     * 方法说明 : 显示只包含数字输入功能的拨号盘，目前应用于会议追加成员
+     * @return void
+     * @author hubin
+     * @Date 2015-9-21
+     */
+    private void loadSimpleDial(EnumContactSelectType eventType)
+    {
+        Bundle data = new Bundle();
+        data.putInt(CommonConstantEntry.DATA_TYPE, eventType.ordinal());
+        parentActivity.turnToFragmentStack(R.id.container_right_content, DialSimpleFragment.class, data);
+    }
+
+}

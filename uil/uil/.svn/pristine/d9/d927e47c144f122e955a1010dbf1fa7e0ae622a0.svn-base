@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/play_record_relativelayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="5dp" >
+
+    <LinearLayout
+        android:id="@+id/play_record_linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/play_local_listen_button"
+            style="@style/fontStyleWhiteMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/play_record_selector"
+            android:text="@string/local_listen_record" />
+
+        <!-- 调听调看 -->
+
+        <Button
+            android:id="@+id/play_record_button"
+            style="@style/fontStyleWhiteMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/play_record_selector"
+            android:text="@string/play_record" />
+
+        <Button
+            android:id="@+id/download_button"
+            style="@style/fontStyleWhiteMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/play_record_selector"
+            android:text="@string/download" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/my_progressbar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="200dp"
+        android:layout_height="5dp"
+        android:layout_below="@id/play_record_linearlayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp"
+        android:progressDrawable="@drawable/record_file_progressbar_selector"
+        android:visibility="gone" />
+
+</RelativeLayout>

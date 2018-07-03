@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+     android:id="@+id/screen_selector"
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+     android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/screen_auto"
+                style="@style/fontStyleWhiteBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/screen_type_auto_checked_bg" />
+
+            <RadioButton
+                android:id="@+id/screen_1"
+                style="@style/fontStyleWhiteBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/screen_type_1_checked_bg" />
+
+            <RadioButton
+                android:id="@+id/screen_4"
+                style="@style/fontStyleWhiteBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/screen_type_4_checked_bg" />
+
+            <RadioButton
+                android:id="@+id/screen_6"
+                style="@style/fontStyleWhiteBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/screen_type_6_checked_bg" />
+
+            <!-- <RadioButton
+                android:id="@+id/screen_8"
+                style="@style/fontStyleWhiteBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/screen_type_8_checked_bg" /> -->
+
+            <RadioButton
+                android:id="@+id/screen_9"
+                style="@style/fontStyleWhiteBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/screen_type_9_checked_bg"/>
+        </RadioGroup>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
+    android:layout_alignParentTop="true"
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:id="@+id/company_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/system_name"
+        android:layout_toRightOf="@id/company_logo"
+        style="@style/fontStyleBlackBig"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:layout_centerVertical="true"/>
+    
+    <TextView
+        android:id="@+id/system_time"
+        style="@style/fontStyleBlackBig"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:layout_toLeftOf="@id/system_time"
+        android:layout_toRightOf="@id/system_name"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/account_name"
+            style="@style/fontStyleBlackMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" 
+            android:maxLines="2"/>
+
+        <TextView
+            android:id="@+id/service_number"
+            style="@style/fontStyleBlackMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="离线"
+            android:layout_weight="1" 
+             android:maxLines="2"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/setting_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_top_setting"/>
+
+    <LinearLayout
+        android:id="@+id/system_info_linearlayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
+        android:layout_toLeftOf="@id/setting_btn"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/top_statue_pane_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/message"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/top_statue_pane_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/phone"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/top_statue_pane_speaker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/speaker"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/top_statue_pane_carmera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/carmera"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/top_statue_pane_service_server"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/carmera"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/top_statue_pane_headset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/headset"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/top_statue_pane_bluetooth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bluetooth"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/top_statue_pane_wifi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/wifi"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/top_statue_pane_signal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/signal"
+            android:visibility="gone" />
+        <ImageView
+            android:id="@+id/top_status_pane_night_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/signal"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</RelativeLayout>

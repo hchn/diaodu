@@ -1,0 +1,15 @@
+package com.jiaxun.uil.util.enums;
+/**
+ * 说明：选择联系人-----ContactSelectFragment
+ * CONTACT_ADD,KEY_ADD,KEYMEM_ADD,CONF_MEMBER_ADD,SUBSCRIBE_ADD
+ * 
+ *       添加联系人，添加按键，添加按键中成员，会议成员添加 ,添加订阅联系人,,临时会议,黑白名单
+ *
+ * @author  HeZhen
+ *
+ * @Date 2015-5-18
+ */
+public enum EnumContactSelectType
+{
+    CONTACT_ADD,KEY_ADD,KEYMEM_ADD, CONF_MEMBER_ADD, SUBSCRIBE_ADD,VS_MEMBER_ADD,TEMP_CONF,BLACK_WHITE
+}

@@ -1,0 +1,315 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" >
+
+    <Button
+        android:id="@+id/l_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/l_1"
+        android:layout_alignBottom="@+id/l_1"
+        android:layout_toRightOf="@+id/l_1"
+        android:text="左2" />
+
+    <Button
+        android:id="@+id/l_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/l_2"
+        android:layout_alignBottom="@+id/l_2"
+        android:layout_toRightOf="@+id/l_2"
+        android:text="左3" />
+
+    <Button
+        android:id="@+id/l_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/l_3"
+        android:layout_alignBottom="@+id/l_3"
+        android:layout_toRightOf="@+id/l_3"
+        android:text="左4" />
+
+    <Button
+        android:id="@+id/l_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/l_1"
+        android:text="左5" />
+
+    <Button
+        android:id="@+id/l_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/l_5"
+        android:layout_alignBottom="@+id/l_5"
+        android:layout_alignLeft="@+id/l_2"
+        android:text="左6" />
+
+    <Button
+        android:id="@+id/l_7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/l_6"
+        android:layout_alignBottom="@+id/l_6"
+        android:layout_alignLeft="@+id/l_3"
+        android:text="左7" />
+
+    <Button
+        android:id="@+id/l_8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/l_7"
+        android:layout_alignBottom="@+id/l_7"
+        android:layout_toRightOf="@+id/l_7"
+        android:text="左8" />
+
+    <Button
+        android:id="@+id/l_9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/l_5"
+        android:text="左9" />
+
+    <Button
+        android:id="@+id/l_0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/l_6"
+        android:layout_below="@+id/l_6"
+        android:text="左0" />
+
+    <Button
+        android:id="@+id/l_x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/l_0"
+        android:layout_alignBottom="@+id/l_0"
+        android:layout_toLeftOf="@+id/l_8"
+        android:text="左*" />
+
+    <Button
+        android:id="@+id/l_j"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/l_x"
+        android:layout_alignBottom="@+id/l_x"
+        android:layout_alignRight="@+id/l_8"
+        android:text="左#" />
+
+    <Button
+        android:id="@+id/l_sb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/l_9"
+        android:layout_below="@+id/l_9"
+        android:text="左手柄" />
+
+    <Button
+        android:id="@+id/l_mt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/l_sb"
+        android:layout_alignBottom="@+id/l_sb"
+        android:layout_alignRight="@+id/l_j"
+        android:layout_marginRight="23dp"
+        android:text="左免提" />
+
+    <Button
+        android:id="@+id/l_mk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/l_mt"
+        android:layout_alignBottom="@+id/l_mt"
+        android:layout_toRightOf="@+id/l_sb"
+        android:text="左模块" />
+
+    <Button
+        android:id="@+id/l_em"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/l_sb"
+        android:layout_toLeftOf="@+id/l_mk"
+        android:text="左耳麦" />
+
+    <Button
+        android:id="@+id/l_jy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/l_em"
+        android:layout_alignBottom="@+id/l_em"
+        android:layout_alignRight="@+id/l_mk"
+        android:text="左静音" />
+    
+    <Button
+        android:id="@+id/r_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/l_em"
+        android:layout_toLeftOf="@+id/l_0"
+        android:text="右1" />
+
+    <Button
+        android:id="@+id/r_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/r_1"
+        android:layout_alignBottom="@+id/r_1"
+        android:layout_alignLeft="@+id/l_0"
+        android:text="右2" />
+
+    <Button
+        android:id="@+id/r_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/r_2"
+        android:layout_alignLeft="@+id/l_x"
+        android:text="右3" />
+
+    <Button
+        android:id="@+id/r_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/r_3"
+        android:layout_alignLeft="@+id/l_j"
+        android:text="右4" />
+
+    <Button
+        android:id="@+id/r_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/r_1"
+        android:layout_below="@+id/r_1"
+        android:text="右5" />
+
+    <Button
+        android:id="@+id/r_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/r_5"
+        android:layout_alignBottom="@+id/r_5"
+        android:layout_alignLeft="@+id/r_2"
+        android:text="右6" />
+
+    <Button
+        android:id="@+id/r_7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/r_3"
+        android:layout_below="@+id/r_3"
+        android:text="右7" />
+
+    <Button
+        android:id="@+id/r_8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/r_7"
+        android:layout_alignBottom="@+id/r_7"
+        android:layout_alignLeft="@+id/r_4"
+        android:text="右8" />
+
+    <Button
+        android:id="@+id/r_9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/r_5"
+        android:layout_toLeftOf="@+id/r_6"
+        android:text="右9" />
+
+    <Button
+        android:id="@+id/r_0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/r_5"
+        android:layout_toRightOf="@+id/r_5"
+        android:text="右0" />
+
+    <Button
+        android:id="@+id/r_x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/r_0"
+        android:layout_alignBottom="@+id/r_0"
+        android:layout_alignLeft="@+id/r_7"
+        android:text="右*" />
+
+    <Button
+        android:id="@+id/r_j"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/r_x"
+        android:layout_alignBottom="@+id/r_x"
+        android:layout_alignLeft="@+id/r_8"
+        android:text="右#" />
+
+    <Button
+        android:id="@+id/r_em"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/r_sb"
+        android:layout_toLeftOf="@+id/r_mk"
+        android:text="右耳麦" />
+
+    <Button
+        android:id="@+id/r_jy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/r_em"
+        android:layout_alignBottom="@+id/r_em"
+        android:layout_alignRight="@+id/r_mk"
+        android:text="右静音" />
+
+    <Button
+        android:id="@+id/r_sb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/r_mk"
+        android:layout_alignParentLeft="true"
+        android:text="右手柄" />
+
+    <Button
+        android:id="@+id/r_mt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/r_mk"
+        android:layout_alignBottom="@+id/r_mk"
+        android:layout_alignLeft="@+id/l_mt"
+        android:text="右免提" />
+
+    <Button
+        android:id="@+id/r_mk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/r_0"
+        android:layout_toRightOf="@+id/r_sb"
+        android:text="右模块" />
+
+    <Button
+        android:id="@+id/l_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/l_5"
+        android:layout_alignParentTop="true"
+        android:text="左1" />
+
+    <Button
+        android:id="@+id/l_ptt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/r_3"
+        android:layout_toRightOf="@+id/l_jy"
+        android:text="左PTT" />
+
+    <Button
+        android:id="@+id/r_ptt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/r_jy"
+        android:layout_alignBottom="@+id/r_jy"
+        android:layout_alignRight="@+id/r_mt"
+        android:text="右PTT" />
+
+</RelativeLayout>

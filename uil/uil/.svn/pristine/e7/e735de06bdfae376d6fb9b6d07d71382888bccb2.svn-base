@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/edit_top_bg"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+    <Button
+        android:id="@+id/back_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_selector"
+        android:text="@string/setting_contact_close" />
+
+    <TextView
+        android:id="@+id/cancel_btn"
+        style="@style/settingContactBtnText"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel" />
+
+    <TextView
+        android:id="@+id/sure_btn"
+        style="@style/settingContactBtnText"
+        android:text="@string/sure" />
+
+    <TextView
+        android:id="@+id/select_again_btn"
+        style="@style/settingContactBtnText"
+        android:text="@string/setting_keyarea_select_again" />
+
+    <TextView
+        android:id="@+id/delete_btn"
+        style="@style/settingContactBtnText"
+        android:text="@string/setting_contact_delete" />
+
+    <TextView
+        android:id="@+id/select_btn"
+        style="@style/settingContactBtnText"
+        android:text="@string/setting_contact_select" />
+
+    <TextView
+        android:id="@+id/modify_btn"
+        style="@style/settingContactBtnText"
+        android:text="@string/setting_contact_modify" />
+
+    <TextView
+        android:id="@+id/select_all_btn"
+        style="@style/settingContactBtnText"
+        android:text="@string/setting_contact_selectall" />
+
+    <TextView
+        android:id="@+id/add_group_btn"
+        style="@style/settingContactBtnText"
+        android:text="@string/setting_contact_addnewgroup" />
+
+    <TextView
+        android:id="@+id/add_contact_btn"
+        style="@style/settingContactBtnText"
+        android:text="@string/setting_contact_addnewcontact" />
+
+    <TextView
+        android:id="@+id/select_contact_btn"
+        style="@style/settingContactBtnText"
+        android:text="@string/setting_keyarea_selectcontact" />
+
+</LinearLayout>

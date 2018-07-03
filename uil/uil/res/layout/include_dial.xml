@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialed_linearlayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/margin_size"
+    android:paddingLeft="@dimen/margin_size"
+    android:paddingRight="@dimen/margin_size"
+    android:visibility="gone" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/id1"
+            style="@style/fontStyleWhiteMedium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/dial_num_bg_one"
+            android:contentDescription="@null"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
+
+        <ImageButton
+            android:id="@+id/id2"
+            style="@style/fontStyleWhiteMedium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/dial_num_bg_two"
+            android:contentDescription="@null"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
+
+        <ImageButton
+            android:id="@+id/id3"
+            style="@style/fontStyleWhiteMedium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/dial_num_bg_three"
+            android:contentDescription="@null"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/id4"
+            style="@style/fontStyleWhiteMedium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/dial_num_bg_four"
+            android:contentDescription="@null"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
+
+        <ImageButton
+            android:id="@+id/id5"
+            style="@style/fontStyleWhiteMedium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/dial_num_bg_five"
+            android:contentDescription="@null"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
+
+        <ImageButton
+            android:id="@+id/id6"
+            style="@style/fontStyleWhiteMedium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/dial_num_bg_six"
+            android:contentDescription="@null"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/id7"
+            style="@style/fontStyleWhiteMedium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/dial_num_bg_seven"
+            android:contentDescription="@null"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
+
+        <ImageButton
+            android:id="@+id/id8"
+            style="@style/fontStyleWhiteMedium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/dial_num_bg_eight"
+            android:contentDescription="@null"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
+
+        <ImageButton
+            android:id="@+id/id9"
+            style="@style/fontStyleWhiteMedium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/dial_num_bg_nine"
+            android:contentDescription="@null"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/id_x"
+            style="@style/fontStyleWhiteMedium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/dial_num_bg_xh"
+            android:contentDescription="@null"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
+
+        <ImageButton
+            android:id="@+id/id0"
+            style="@style/fontStyleWhiteMedium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/dial_num_bg_zero"
+            android:contentDescription="@null"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
+
+        <ImageButton
+            android:id="@+id/id_j"
+            style="@style/fontStyleWhiteMedium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/dial_num_bg_jh"
+            android:contentDescription="@null"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:id="@+id/dial_callrecord_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/again_start_call"
+                style="@style/fontStyleWhiteMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/dial_num_bg_recall"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
+
+            <Button
+                android:id="@+id/start_call"
+                style="@style/fontStyleWhiteMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/dial_num_bg_call"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
+
+            <Button
+                android:id="@+id/cleardial_button"
+                style="@style/fontStyleWhiteMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/dial_num_bg_del"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+</LinearLayout>

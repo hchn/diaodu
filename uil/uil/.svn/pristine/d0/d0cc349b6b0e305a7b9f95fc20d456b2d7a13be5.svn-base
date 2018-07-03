@@ -1,0 +1,286 @@
+package com.jiaxun.setting.fragment;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+import android.app.Fragment;
+import android.content.Context;
+import android.os.Bundle;
+import android.os.Handler;
+import android.text.Editable;
+import android.text.InputFilter;
+import android.text.InputType;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.jiaxun.sdk.util.config.ConfigHelper;
+import com.jiaxun.sdk.util.constant.CommonConstantEntry;
+import com.jiaxun.setting.model.PrefItemType;
+import com.jiaxun.setting.model.PrefsBaseItem;
+import com.jiaxun.setting.model.PrefsSeekBarItem;
+import com.jiaxun.setting.model.PrefsTextItem;
+import com.jiaxun.setting.ui.SettingActivity;
+import com.jiaxun.uil.R;
+import com.jiaxun.uil.util.MyFilter;
+import com.jiaxun.uil.util.UiConfigEntry;
+import com.jiaxun.uil.util.UiEventEntry;
+import com.jiaxun.uil.util.eventnotify.EventNotifyHelper;
+
+/**
+ * 说明：设置配置信息
+ * 
+ * @author zhangxd
+ * 
+ * @Date 2015-2-28
+ */
+public class PrefsEditInfoFragment extends Fragment implements android.view.View.OnClickListener
+{
+    private static final String TAG = PrefsEditInfoFragment.class.getName();
+    // 域名正则表达式
+    private static final String IP_ADDRESS_REGEX = "^(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|[1-9])\\.(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\.(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\.(1\\d{2}|2[0-4]\\d|25[0-4]|[1-9]\\d|[1-9])"
+            + "|^([a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?\\.)+[a-zA-Z]{2,6}$";
+    private static final String ACCOUNT_PASSWORD = "^[a-zA-Z0-9_@]{1,20}$";
+    private Button saveButton;
+    private Button cancelButton;
+    private EditText editText;
+    private TextView textViewWhichInfo;
+    private PrefsBaseItem prefsBaseItem;
+    private ConfigHelper configHelper = ConfigHelper.getDefaultConfigHelper(getActivity());
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
+        View view = inflater.inflate(R.layout.fragment_edit_info, container, false);
+        saveButton = (Button) view.findViewById(R.id.saveButton);
+        cancelButton = (Button) view.findViewById(R.id.cancelButton);
+        editText = (EditText) view.findViewById(R.id.editText);
+        editText.setFocusableInTouchMode(true);
+        editText.setFocusable(true);
+        editText.requestFocus();
+        textViewWhichInfo = (TextView) view.findViewById(R.id.textViewWhichInfo);
+        prefsBaseItem = getArguments().getParcelable(CommonConstantEntry.DATA_OBJECT);
+        saveButton.setEnabled(false);
+        saveButton.setOnClickListener(this);
+        cancelButton.setOnClickListener(this);
+        return view;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState)
+    {
+        super.onActivityCreated(savedInstanceState);
+        // 以下设置不能再onCreateView里面不生效，除非延时
+        InputMethodManager inputManager = (InputMethodManager) editText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.showSoftInput(editText, 0);
+    }
+    @Override
+    public void onStart( )
+    {
+        super.onStart();
+        if ((prefsBaseItem != null))
+        {
+            editText.setText("");
+            setting();
+        }
+        else
+        {
+            // Toast.makeText(getActivity(), "空指針", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onDestroyView()
+    {
+        super.onDestroyView();
+        editText.setText("");
+    }
+
+    @Override
+    public void onClick(View v)
+    {
+        ((InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getActivity().getCurrentFocus()
+                .getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        switch (v.getId())
+        {
+            case R.id.saveButton:
+                if (!TextUtils.isEmpty(editText.getText()))
+                {
+                    switch (prefsBaseItem.getItemType())
+                    {
+                        case PrefItemType.TEXT:
+                        case PrefItemType.PASSWORD:
+                        case PrefItemType.SERVER_ADDRESS:
+                        case PrefItemType.RADIO_GROUP:
+                            configHelper.putString(prefsBaseItem.getKey(), editText.getText().toString());
+                            if (prefsBaseItem != null && prefsBaseItem.getItemCallBack() != null)
+                                prefsBaseItem.getItemCallBack().onCallBackResult(true);
+                            if (prefsBaseItem.getKey().equals(UiConfigEntry.SYSTEM_NAME))
+                            {
+                                EventNotifyHelper.getInstance().postNotificationName(UiEventEntry.NOTIFY_SYSTME_NAME_CHANGE, editText.getText().toString());
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                break;
+
+            default:
+                break;
+        }
+        ((SettingActivity) getActivity()).backSystemSettingFragment(v.getId());
+    }
+
+    /**
+     * 方法说明 : 文本类型
+     * 
+     * @param name
+     *            终端显示名称
+     * @return boolean
+     * @author hubin
+     * @Date 2015-3-3
+     */
+    private boolean isDisplayNameValid(String name)
+    {
+
+        if (TextUtils.isEmpty(name) || !name.matches(ACCOUNT_PASSWORD))
+        {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 方法说明 : 支持IPV4，支持域名
+     * 
+     * @param address
+     * @return boolean
+     * @author hubin
+     * @Date 2015-3-3
+     */
+    private boolean isServerAddressValid(String address)
+    {
+        if (TextUtils.isEmpty(address) || !address.matches(IP_ADDRESS_REGEX))
+        {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 数值合法验证
+     */
+    private boolean isIntValid(String port, PrefsSeekBarItem item)
+    {
+        try
+        {
+            int value = Integer.valueOf(port);
+            if ((value < item.getMinValue()) || (value > item.getMaxValue()))
+            {
+                return false;
+            }
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
+
+    private void setting()
+    {
+        // 设置标题显示修改说明内容
+        textViewWhichInfo.setText(prefsBaseItem.getName());
+        // 限制输入字符个数
+        switch (prefsBaseItem.getItemType())
+        {
+            case PrefItemType.TEXT:
+                editText.setFilters(new InputFilter[] { MyFilter.getInputFilter(ACCOUNT_PASSWORD) });
+                editText.setInputType(InputType.TYPE_CLASS_TEXT);
+                break;
+            case PrefItemType.PASSWORD:
+                editText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                editText.setFilters(new InputFilter[] { MyFilter.getInputFilter(ACCOUNT_PASSWORD) });
+                break;
+            case PrefItemType.SERVER_ADDRESS:
+                editText.setInputType(InputType.TYPE_CLASS_TEXT);
+//                editText.setFilters(new InputFilter[] { 
+//                        MyFilter.getInputFilter(IP_ADDRESS_REGEX)});
+                break;
+            default:
+                break;
+        }
+
+        // 设置输入提示
+        String valueStr = configHelper.getString(prefsBaseItem.getKey(), "");
+
+        if (valueStr.equals(""))
+        {
+            editText.setText("");
+            editText.setHint(prefsBaseItem.getHint());
+        }
+        else
+        {
+            editText.setText(valueStr);
+        }
+
+        editText.addTextChangedListener(new TextWatcher()
+        {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count)
+            {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after)
+            {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s)
+            {
+                // refreshEditPrefs(numberETP, isNumberValid(s.toString()));
+
+                if (TextUtils.isEmpty(s.toString()))
+                {
+                    editText.setHint(prefsBaseItem.getHint());
+                }
+                switch (prefsBaseItem.getItemType())
+                {
+                    case PrefItemType.TEXT:
+                    case PrefItemType.PASSWORD:
+                        if (isDisplayNameValid(s.toString()))
+                        {
+                            saveButton.setEnabled(true);
+                        }
+                        else
+                        {
+                            saveButton.setEnabled(false);
+                        }
+                        break;
+
+                    case PrefItemType.SERVER_ADDRESS:
+                        if (isServerAddressValid(s.toString()))
+                        {
+                            saveButton.setEnabled(true);
+                        }
+                        else
+                        {
+                            saveButton.setEnabled(false);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+    }
+
+}

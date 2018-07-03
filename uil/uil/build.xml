@@ -1,0 +1,162 @@
+<?xml version="1.0"  encoding="GB2312" ?>
+
+<project default="release" basedir=".">
+ 		<!-- ANT环境变量 -->
+    <property environment="env" />
+    <!-- 当前日期 -->
+    <tstamp />
+    <!-- 应用名称 -->
+    <property name="appName" value="T30_C_V${env.VERSION}_D${DSTAMP}"/>
+    <!-- SDK目录(获取操作系统环境变量ANDROID_SDK_HOME的值) -->
+    <property name="sdk-folder" value="${env.ANDROID_SDK_HOME}" />
+    <!-- SDK指定平台中tools目录 -->
+    <property name="sdk-platform-tools" value="${sdk-folder}/platform-tools" />  
+    <!-- 使用到的命令(当前系统为windows,如果系统为linux,可将.bat文件替换成相对应的命令) -->
+    <property name="aapt" value="${sdk-platform-tools}/aapt" />
+    <property name="aidl" value="${sdk-platform-tools}/aidl" />
+    <property name="dx" value="${sdk-platform-tools}/dx.bat" />
+    <property name="apkbuilder" value="${sdk-folder}/tools/apkbuilder.bat" />
+    <property name="jarsigner" value="${env.JAVA_HOME}/bin/jarsigner" />
+    <!-- 编译需要的jar;  -->
+    <property name="android-jar" value="${sdk-folder}/platforms/android-19/android.jar" />
+    <!-- classes.dex文件 -->
+    <property name="dex-file" value="${basedir}\bin\classes.dex" />
+    <!-- res.zip文件 -->
+    <property name="res-file" value="${basedir}\bin\res.zip" />
+    <!-- 未签名apk包 -->
+    <property name="out-unsigned-apk" value="${basedir}\bin\unsigned.apk" />
+    <!-- 已认证apk包 -->
+
+    <property name="out-signed-apk" value="${basedir}\bin\${appName}.apk" />
+ 
+ 		<!-- 初始化工作 -->
+    <target name="init">
+        <echo>Initializing all output directories...</echo>
+        <!-- 删除以前发布目录 -->
+        <delete dir="bin" />
+        <delete dir="gen" />
+        <!-- 准备目录 -->
+        <mkdir dir="bin" />
+        <mkdir dir="gen" />
+    </target>
+    
+    <target name="release" depends="init"> 
+    		<!-- 根据主工程中的资源文件生成R.java文件  --> 
+        <echo>generating R.java for project to dir gen (using aapt) ... </echo> 
+        <exec executable="${aapt}"> 
+            <arg value="package" /> 
+            <arg value="-m" /> 
+            <arg value="-J" /> 
+            <arg value="gen" /> 
+            <arg value="-M" /> 
+            <arg value="AndroidManifest.xml" /> 
+            <arg value="-S" /> 
+            <arg value="res" /> 
+            <arg value="-S" /> 
+            <arg value="../VideoSystem/res" /> 
+            <arg value="-I" /> 
+            <arg value="${android-jar}" /> 
+            <arg value="--auto-add-overlay" /> 
+        </exec> 
+
+				<!-- 根据引用工程中的资源文件生成R.java文件  --> 
+        <echo>generating R.java for library to dir gen (using aapt) ... </echo> 
+        <exec executable="${aapt}"> 
+            <arg value="package" /> 
+            <arg value="-m" /> 
+            <arg value="--non-constant-id" /> 
+            <arg value="--auto-add-overlay" /> 
+            <arg value="-J" /> 
+            <arg value="gen" /> 
+            <arg value="-M" /> 
+            <arg value="../VideoSystem/AndroidManifest.xml" /> 
+            <arg value="-S" /> 
+            <arg value="res" /> 
+            <arg value="-S" /> 
+            <arg value="../VideoSystem/res" /> 
+            <arg value="-I" /> 
+            <arg value="${android-jar}" /> 
+        </exec> 
+
+				<!-- 将工程中的java源文件编译成class文件 -->
+        <echo>compiling java files to class files (include R.java, library and the third-party jars) ... </echo> 
+        <javac destdir="bin" bootclasspath="${android-jar}"> 
+            <src path="../VideoSystem/src" /> 
+            <src path="src" /> 
+            <src path="gen" /> 
+            <classpath>
+                 <fileset dir="libs" includes="*.jar"/>
+             </classpath>
+        </javac> 
+
+				<!-- 将.class文件转化成.dex文件 -->
+        <echo>packaging class files (include the third-party jars) to calsses.dex ... </echo> 
+        <exec executable="${dx}"> 
+            <arg value="--dex" /> 
+            <arg value="--output=${dex-file}" /> 
+            <arg value="${basedir}\bin" /> 
+            <arg value="${basedir}\libs" /> 
+        </exec> 
+
+				<!-- 将资源文件放进输出目录 -->
+        <echo>packaging resource (include res, assets, AndroidManifest.xml, etc.) to res.zip ... </echo> 
+        <exec executable="${aapt}"> 
+            <arg value="package" /> 
+            <arg value="-f" /> 
+            <arg value="-M" /> 
+            <arg value="AndroidManifest.xml" /> 
+            <arg value="-S" /> 
+            <arg value="res" /> 
+            <arg value="-S" /> 
+            <arg value="../VideoSystem/res" /> 
+            <arg value="-A" /> 
+            <arg value="assets" /> 
+            <arg value="-I" /> 
+            <arg value="${android-jar}" /> 
+            <arg value="-F" /> 
+            <arg value="${res-file}" /> 
+            <arg value="--auto-add-overlay" /> 
+        </exec> 
+
+				<!-- 打包成未签证的apk -->
+        <echo>building unsigned.apk ... </echo> 
+        <exec executable="${apkbuilder}"> 
+            <arg value="${out-unsigned-apk}" /> 
+            <arg value="-u" /> 
+            <arg value="-z" /> 
+            <arg value="${res-file}" /> 
+            <arg value="-f" /> 
+            <arg value="${dex-file}" /> 
+            <arg value="-nf" />
+            <arg value="${basedir}\libs" />
+            <arg value="-nf" />
+            <arg value="${env.BUILD_DIR}\VideoSystem\libs" />
+        </exec> 
+
+				<!-- 对apk进行签证 -->
+        <echo>signing the unsigned apk to final product apk ... </echo> 
+        <exec executable="${jarsigner}"> 
+            <arg value="-keystore" />
+            <arg value="${basedir}\M6100.keystore" />
+            <arg value="-storepass" />
+            <arg value="123456" />
+            <arg value="-keypass" />
+            <arg value="123456" />
+            <arg value="-signedjar" />
+            <arg value="${out-signed-apk}"/>
+            <arg value="${out-unsigned-apk}" />
+            <arg value="M6100.keystore" />
+            <arg value="-digestalg" />
+            <arg value="SHA1" />
+            <arg value="-sigalg" />
+            <arg value="MD5withRSA" />
+            <arg value="release"/>
+        </exec> 
+
+				<!-- 删除未签证apk -->
+        <delete file="${out-unsigned-apk}"/>
+        <echo>APK is released. path:${out-signed-apk}</echo>
+        <echo>done.</echo> 
+    </target> 
+
+</project>

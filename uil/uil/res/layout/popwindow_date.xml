@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:background="@color/selecttime_bg"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="@color/transparent"
+            android:textSize="@dimen/font_size_medium"
+            android:textColor="@color/time_button_bg"
+            android:text="取消" />
+
+        <Button
+            android:background="@color/transparent"
+            android:id="@+id/confirm_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:textSize="@dimen/font_size_medium"
+            android:textColor="@color/time_button_bg"
+            android:text="确定" />
+
+        <TextView
+            android:id="@+id/time_textview"
+            style="@style/fontStyleBlackMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:text="2015/07/02" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <com.jiaxun.uil.ui.widget.selectdate.WheelView
+            android:id="@+id/year_wheelview"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+
+        <com.jiaxun.uil.ui.widget.selectdate.WheelView
+            android:id="@+id/month_wheelview"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+
+        <com.jiaxun.uil.ui.widget.selectdate.WheelView
+            android:id="@+id/day_wheelview"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</LinearLayout>

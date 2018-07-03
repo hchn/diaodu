@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/contact_fragment_bg_color" >
+
+    <TextView
+        android:id="@+id/dial_textview"
+        style="@style/fontStyleWhiteMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="拨号盘界面"
+        android:textColor="@color/white"
+        android:textSize="25sp" />
+
+    <RelativeLayout
+        android:id="@+id/dial_relativelayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dial_textview"
+        android:layout_marginTop="10dp" >
+
+        <EditText
+            android:id="@+id/dial_edittext"
+            style="@style/fontStyleWhiteBig"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/search_background"
+            android:ems="10"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="60dp"
+            android:textCursorDrawable="@null" >
+
+            <requestFocus />
+        </EditText>
+
+        <ImageView
+            android:id="@+id/dial_del_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:contentDescription="@null"
+            android:src="@drawable/del_num_icon" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/dial_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/dial_linearlayout"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/dial_relativelayout"
+        android:listSelector="@color/transparent"
+        android:visibility="gone" >
+    </ListView>
+
+    <LinearLayout
+        android:id="@+id/dial_linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <include layout="@layout/include_dial" />
+
+        <ImageView
+            android:id="@+id/show_dial_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@null"
+            android:src="@drawable/open_dialed_imageview" />
+    </LinearLayout>
+
+</RelativeLayout>

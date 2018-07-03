@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/user_list_page"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+     <include
+        layout="@layout/common_top_edit_btns" />
+
+    <TextView
+        android:id="@+id/textview"
+        style="@style/fontStyleBlackBig"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="请选择加入地方：" />
+
+    <TextView
+        android:id="@+id/address_list_add_textview"
+        style="@style/fontStyleBlackMedium"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_contact_from_address_list" />
+
+    <TextView
+        android:id="@+id/dial_add_textview"
+        style="@style/fontStyleBlackMedium"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_contact_from_dial" />
+
+</LinearLayout>

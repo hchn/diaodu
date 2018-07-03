@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mediaControllerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:layout_gravity="bottom" >
+
+     <Button
+        android:id="@+id/play_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/pause_icon"
+        android:maxHeight="30dp"
+        android:maxWidth="30dp" />
+  
+       <SeekBar
+        android:id="@+id/my_seeker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/play_button"
+        android:maxHeight="4dp"
+        android:thumbOffset="0dp"
+        android:layout_marginLeft="5dp"
+        android:progressDrawable="@drawable/seekbar_bg"
+        android:thumb="@drawable/thumb_bar" />
+
+    <TextView
+        android:id="@+id/total_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/current_textview"
+        android:layout_alignBottom="@+id/current_textview"
+        android:layout_alignParentRight="true"
+        android:text="00:00" />
+
+    <TextView
+        android:id="@+id/current_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/my_seeker"
+        android:layout_alignLeft="@+id/my_seeker"
+        android:text="00:00" />
+
+</RelativeLayout>

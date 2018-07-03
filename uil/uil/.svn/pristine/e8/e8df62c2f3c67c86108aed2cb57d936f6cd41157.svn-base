@@ -1,0 +1,176 @@
+package com.jiaxun.setting.fragment;
+
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+
+import android.graphics.Color;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.TextView;
+
+import com.jiaxun.sdk.util.config.ConfigHelper;
+import com.jiaxun.sdk.util.constant.CommonConstantEntry;
+import com.jiaxun.sdk.util.log.Log;
+import com.jiaxun.setting.model.PrefsGroupRadioItem;
+import com.jiaxun.setting.model.RadioGroupType;
+import com.jiaxun.setting.ui.SettingActivity;
+import com.jiaxun.uil.R;
+import com.jiaxun.uil.ui.fragment.BaseFragment;
+import com.jiaxun.uil.util.UiConfigEntry;
+
+/**
+ * ตฅัก
+ */
+public class PrefsGroupRadioFragment extends BaseFragment implements android.view.View.OnClickListener
+{
+    private static final String TAG = PrefsGroupRadioFragment.class.getName();
+    private Button saveButton;
+    private Button cancelButton;
+    private TextView textViewWhichInfo;
+    private RadioGroup radioGroup;
+    private PrefsGroupRadioItem prefsGroupRadioItem;
+    private String value;
+    private String[][] options;
+    private String stringValue=null;
+    private int intValue=0;
+    private Map<Integer, String> radioOptions = new HashMap<Integer, String>();
+    @Override
+    public int getLayoutView()
+    {
+        return R.layout.fragment_edit_info_group_radio;
+    }
+
+    @Override
+    public void initComponentViews(View view)
+    {
+        saveButton = (Button) view.findViewById(R.id.saveButton);
+
+        cancelButton = (Button) view.findViewById(R.id.cancelButton);
+
+        textViewWhichInfo = (TextView) view.findViewById(R.id.textViewWhichInfo);
+
+        radioGroup =new  RadioGroup(getActivity());
+         ((LinearLayout) view.findViewById(R.id.linearLayoutRadio)).addView(radioGroup);
+        saveButton.setOnClickListener(this);
+        cancelButton.setOnClickListener(this);
+        radioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId)
+            {
+                value = radioOptions.get(checkedId);
+                Log.info(TAG, "id" + checkedId + "Value:" + value);
+            }
+        });
+        prefsGroupRadioItem = getArguments().getParcelable(CommonConstantEntry.DATA_OBJECT);
+        options = prefsGroupRadioItem.getRadioItems();
+      
+        if (prefsGroupRadioItem.getKey().equals(UiConfigEntry.PREF_LANGUAGE))
+        {
+            Locale locale = getResources().getConfiguration().locale;
+            String language = locale.getLanguage();
+            if (language.endsWith("zh"))
+                stringValue = ConfigHelper.getDefaultConfigHelper(getActivity()).getString(prefsGroupRadioItem.getKey(), "LANGUAGE_CHINESE");
+            else if (language.endsWith("en"))
+                stringValue = ConfigHelper.getDefaultConfigHelper(getActivity()).getString(prefsGroupRadioItem.getKey(), "LANGUAGE_ENGLISH");
+        }
+        else
+        {
+            switch (prefsGroupRadioItem.getStoreType())
+            {
+                case RadioGroupType.DATA_STRING:
+                    stringValue = ConfigHelper.getDefaultConfigHelper(getActivity()).getString(prefsGroupRadioItem.getKey(), "");
+                    break;
+                case RadioGroupType.DATA_INTEGER:
+                    intValue = ConfigHelper.getDefaultConfigHelper(getActivity()).getInt(prefsGroupRadioItem.getKey(), 0);
+                    break;
+                default:
+                    break;
+            }
+        }
+        textViewWhichInfo.setText(prefsGroupRadioItem.getName());
+        RadioButton radioButton;
+        for (int i = 0; i < options.length; i++)
+        {
+            radioButton = new RadioButton(this.getActivity());
+            radioButton.setText(options[i][1]);
+            radioButton.setId(i);
+            radioButton.setTextColor(Color.WHITE);
+            switch (prefsGroupRadioItem.getStoreType())
+            {
+                case RadioGroupType.DATA_STRING:
+                    if (TextUtils.isEmpty(stringValue) && i == 0)
+                    {
+                        radioButton.setChecked(true);
+                    }
+                    else
+                    {
+                        if (stringValue.equals(options[i][0]))
+                            radioButton.setChecked(true);
+                    }
+                    break;
+                case RadioGroupType.DATA_INTEGER:
+                    if ( i == 0)
+                    {
+                        radioButton.setChecked(true);
+                    }
+                    else
+                    {
+                        if (intValue==(Integer.parseInt(options[i][0])))
+                            radioButton.setChecked(true);
+                    }
+                    break;
+                default:
+                    break;
+            }
+            
+            radioOptions.put(radioButton.getId(), options[i][0]);
+            radioGroup.addView(radioButton);
+        }
+    }
+    @Override
+    public void onClick(View v)
+    {
+        switch (v.getId())
+        {
+            case R.id.saveButton:
+                Log.info(TAG, prefsGroupRadioItem.getKey() + ":" + value);
+                boolean result;
+                switch (prefsGroupRadioItem.getStoreType())
+                {
+                    case RadioGroupType.DATA_STRING:
+                        result = ConfigHelper.getDefaultConfigHelper(getActivity()).putString(prefsGroupRadioItem.getKey(), value);
+                        if (prefsGroupRadioItem.getItemCallBack() != null)
+                            prefsGroupRadioItem.getItemCallBack().onCallBackResult(result);
+                        break;
+                    case RadioGroupType.DATA_INTEGER:
+                        result = ConfigHelper.getDefaultConfigHelper(getActivity()).putInt(prefsGroupRadioItem.getKey(), Integer.parseInt(value));
+                        if (prefsGroupRadioItem.getItemCallBack() != null)
+                            prefsGroupRadioItem.getItemCallBack().onCallBackResult(result);
+                        break;
+                    default:
+                        break;
+                }
+
+                break;
+
+            case R.id.cancelButton:
+                break;
+
+            default:
+                break;
+        }
+
+        ((SettingActivity) getActivity()).backSystemSettingFragment(v.getId());
+    }
+
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/contact_edit"
+    style="@style/edit_top_bg"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/cancel_btn"
+        style="@style/settingContactBtnText"
+        android:text="@string/cancel"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/sure_btn"
+        style="@style/settingContactBtnText"
+        android:text="@string/sure"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/select_again_btn"
+        style="@style/settingContactBtnText"
+        android:text="@string/setting_keyarea_select_again"
+        android:visibility="visible" />
+
+</LinearLayout>

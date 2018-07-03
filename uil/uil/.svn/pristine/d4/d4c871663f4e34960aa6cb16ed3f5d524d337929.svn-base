@@ -1,0 +1,85 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="用户账户参数设置" >
+        <EditTextPreference
+            android:key="PREF_SERVICE_ACCOUNT_DISPLAY_NAME"
+            android:dialogMessage="请输入长度少于50位的字符"
+            android:title="终端显示名称" />
+        <EditTextPreference
+            android:key="PREF_SERVICE_ACCOUNT_NUMBER"
+            android:dialogMessage="请输入长度少于28位的数字"
+            android:title="终端号码" />
+        <EditTextPreference
+            android:key="PREF_SERVICE_ACCOUNT_NAME"
+            android:dialogMessage="请输入长度少于28位的字符"
+            android:title="注册账号" />
+        <EditTextPreference
+            android:inputType="textPassword"
+            android:key="PREF_SERVICE_ACCOUNT_PASSWORD"
+            android:dialogMessage="请输入长度少于20位的字符"
+            android:title="用户密码" />
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="主用服务器参数设置" >
+        <EditTextPreference
+            android:key="PREF_SERVICE_MASTER_SERVER_IP"
+            android:dialogMessage="请输入有效的服务器IP地址或域名"
+            android:title="主用服务器地址" />
+        <EditTextPreference
+            android:numeric="integer"
+            android:dialogMessage="请输入范围在1-65535范围内 的有效端口号"
+            android:key="PREF_SERVICE_MASTER_SERVER_PORT"
+            android:title="主用服务器端口" />
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="备用服务器参数设置" >
+        <EditTextPreference
+            android:key="PREF_SERVICE_SLAVE_SERVER_IP"
+            android:dialogMessage="请输入有效的服务器IP地址或域名"
+            android:title="备用服务器地址" />
+        <EditTextPreference
+            android:numeric="integer"
+            android:dialogMessage="请输入范围在1-65535范围内 的有效端口号"
+            android:key="PREF_SERVICE_SLAVE_SERVER_PORT"
+            android:title="备用服务器端口" />
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="本地端口" >
+        <EditTextPreference
+            android:numeric="integer"
+            android:key="PREF_SERVICE_AUDIO_PORT"
+            android:dialogMessage="请输入范围在1-65535范围内 的有效端口号"
+            android:title="RTP音频端口" />
+        <EditTextPreference
+            android:numeric="integer"
+            android:dialogMessage="请输入范围在1-65535范围内 的有效端口号"
+            android:key="PREF_SERVICE_VIDEO_PORT"
+            android:title="RTP视频端口" />
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="操作台用户设置" >
+    </PreferenceCategory>
+    <PreferenceCategory android:title="时间日期设置" >
+    </PreferenceCategory>
+    <PreferenceCategory android:title="显示设置" >
+    </PreferenceCategory>
+    <PreferenceCategory android:title="声音设置" >
+    </PreferenceCategory>
+    <PreferenceCategory android:title="语言设置" >
+    </PreferenceCategory>
+    <PreferenceCategory android:title="业务设置" >
+        <SwitchPreference 
+            android:title="自动应答"
+            android:switchTextOn="开启"
+            android:switchTextOff="关闭"
+            android:key="PREF_CALL_AUTO_ANSWER"/>
+        <EditTextPreference
+            android:numeric="integer"
+            android:key="PREF_CALL_EMERGENCY_PRIORITY"
+            android:dialogMessage="请输入范围在0-4范围内的紧急呼叫优先级"
+            android:title="紧急呼叫优先级" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="配置方式说明" >
+    </PreferenceCategory>
+
+</PreferenceScreen>

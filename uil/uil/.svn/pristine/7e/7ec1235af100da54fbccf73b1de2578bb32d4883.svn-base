@@ -1,0 +1,60 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="title_footer_layout_height">40dp</dimen>
+    <dimen name="margin_size">5dp</dimen>
+    <dimen name="dialog_margin_size">20dp</dimen>
+    <dimen name="font_size_medium">17sp</dimen>
+    <dimen name="font_size_big">20sp</dimen>
+    <dimen name="font_size_super_big">30sp</dimen>
+    <dimen name="font_size_small">13sp</dimen>
+    <dimen name="main_right_size">20dp</dimen>
+    <dimen name="title_call_log_layout_height">53dp</dimen>
+    <dimen name="call_log_title_icon_margin_top">4dp</dimen>
+    <dimen name="edittext_height">40dp</dimen>
+    <dimen name="textview_height">40dp</dimen>
+    <dimen name="list_item_height">39dp</dimen>
+    <dimen name="framelayout1">100dp</dimen>
+    <dimen name="framelayout2">200dp</dimen>
+    <dimen name="framelayout3">300dp</dimen>
+    <dimen name="edittextheight">50dp</dimen>
+    <dimen name="groupnamensize">65dp</dimen>
+    
+    <dimen name="video_type1_width">805dp</dimen>
+    <dimen name="video_type1_height">693dp</dimen>
+    <dimen name="video_type4_width">401dp</dimen>
+    <dimen name="video_type4_height">346dp</dimen>
+    <dimen name="video_type6_width_big">536dp</dimen>
+    <dimen name="video_type6_height_big">462dp</dimen>
+    <dimen name="video_type6_width_small">268dp</dimen>
+    <dimen name="video_type6_height_small">231dp</dimen>
+    <dimen name="video_type8_width_big">603dp</dimen>
+    <dimen name="video_type8_height_big">519dp</dimen>
+    <dimen name="video_type8_width_small">201dp</dimen>
+    <dimen name="video_type8_height_small">173dp</dimen>
+    <dimen name="video_type9_width">266dp</dimen>
+    <dimen name="video_type9_height">229dp</dimen>
+    
+    <dimen name="video_margin">12dp</dimen>
+    <dimen name="home_vertical_margin">2dp</dimen>
+    
+    <!-- <dimen name="main_top_height">35dp</dimen>
+    <dimen name="main_left_tab_width">85dp</dimen>
+    <dimen name="main_left_container_width">735dp</dimen>
+    <dimen name="main_right_container_width">415dp</dimen>
+    <dimen name="main_right_tab_width">45dp</dimen> -->
+    <dimen name="main_local_video_width">240dp</dimen>
+    <dimen name="main_local_video_height">180dp</dimen>
+    
+    <dimen name="call_list_icon_padding">10dp</dimen>
+    <dimen name="call_list_status_height">76dp</dimen>
+    <dimen name="call_list_ctr_height">93dp</dimen>
+    
+    <dimen name="conf_member_icon_margin">10dp</dimen>
+    <dimen name="conf_member_icon_info_divide">20dp</dimen>
+    
+    <dimen name="prefs_listview_item_pading">5dp</dimen>
+    <dimen name="dgv_overlap_if_switch_straight_line">16dp</dimen>
+</resources>

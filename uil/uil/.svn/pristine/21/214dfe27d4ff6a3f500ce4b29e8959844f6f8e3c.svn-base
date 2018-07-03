@@ -1,0 +1,84 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/user_list_page"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/attend_count_textview"
+            style="@style/fontStyleWhiteBig"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:text="dddd" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <!--
+                 <TextView
+                style="@style/fontStyleWhiteBig"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:text="姓名" />
+            -->
+
+            <TextView
+                style="@style/fontStyleWhiteBig"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:text="用户名" />
+
+            <TextView
+                style="@style/fontStyleWhiteBig"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:text="角色" />
+
+            <TextView
+                style="@style/fontStyleWhiteBig"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:text="操作" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/userList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+        </ListView>
+
+        <Button
+            android:id="@+id/adduser"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            android:text="添加" />
+    </LinearLayout>
+
+</LinearLayout>

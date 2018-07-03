@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/control_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/conf_member_icon_margin"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/conf_close"
+            style="@style/fontStyleBlackMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/conf_ctr_btn_click_bg"
+            android:text="关闭" />
+
+        <Button
+            android:id="@+id/conf_leave"
+            style="@style/fontStyleBlackMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/conf_ctr_btn_checked_bg"
+            android:text="退会" />
+
+        <Button
+            android:id="@+id/conf_add"
+            style="@style/fontStyleBlackMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/conf_ctr_btn_click_bg"
+            android:text="追加" />
+
+        <Button
+            android:id="@+id/conf_bgm"
+            style="@style/fontStyleBlackMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/conf_ctr_btn_checked_bg"
+            android:text="开提示音" />
+    </LinearLayout>
+
+    <com.jiaxun.uil.ui.view.DraggableGridView
+        android:id="@+id/member_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:horizontalSpacing="3dp"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="3dp" >
+    </com.jiaxun.uil.ui.view.DraggableGridView>
+
+</LinearLayout>

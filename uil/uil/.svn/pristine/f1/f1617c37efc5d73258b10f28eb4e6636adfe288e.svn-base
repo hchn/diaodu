@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_bg"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:id="@+id/layout_top"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layout_top"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/container_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <include
+                android:id="@+id/layout_left"
+                layout="@layout/pane_left_tab"
+                android:visibility="gone" />
+
+            <FrameLayout
+                android:id="@+id/container_left_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <include
+            android:id="@+id/divider_0"
+            layout="@layout/divider" />
+
+        <LinearLayout
+            android:id="@+id/container_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <include
+                android:id="@+id/local_video_container"
+                layout="@layout/pane_local_video"
+                android:visibility="gone" />
+
+            <FrameLayout
+                android:id="@+id/container_right_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+       <!--  <include
+            android:id="@+id/divider_1"
+            layout="@layout/divider" /> -->
+
+        <include
+            android:id="@+id/layout_right"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            layout="@layout/pane_right_tab"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</RelativeLayout>

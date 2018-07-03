@@ -1,0 +1,43 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <TextView
+        android:id="@+id/textViewWhichInfo"
+        style="@style/fontStyleBlackBig"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="TextView" />
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="确定"
+        style="@style/fontStyleBlackBig"/>
+
+    <Button
+        android:id="@+id/remove_button"
+        style="@style/fontStyleWhiteBig"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="5dp"
+        android:layout_toRightOf="@+id/saveButton"
+        android:text="不保存"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/cancelButton"
+        style="@style/fontStyleBlackBig"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="返回" />
+
+</RelativeLayout>

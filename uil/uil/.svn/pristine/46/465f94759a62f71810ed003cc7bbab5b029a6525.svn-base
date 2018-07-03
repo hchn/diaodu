@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_bg"
+    android:orientation="horizontal"
+    android:padding="@dimen/prefs_listview_item_pading" >
+
+    <ImageView
+        android:id="@+id/imageViewHead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:id="@+id/textViewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/imageViewHead"
+        android:text="Large Text"
+        style="@style/fontStyleBlackBig" />
+
+    <ToggleButton
+        android:id="@+id/toggleButtonBoolean"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="center_horizontal"
+        android:background="@android:color/transparent"
+        android:button="@drawable/boolean_btn"
+        android:checked="false"
+        android:text=""
+        android:textOff=""
+        android:textOn="" />
+
+</RelativeLayout>

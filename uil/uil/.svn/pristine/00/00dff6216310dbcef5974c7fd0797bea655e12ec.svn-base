@@ -1,0 +1,545 @@
+package com.jiaxun.setting.ui.fragment;
+
+import java.util.ArrayList;
+
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
+
+import com.jiaxun.sdk.dcl.model.ContactModel;
+import com.jiaxun.sdk.dcl.model.ContactNum;
+import com.jiaxun.sdk.dcl.model.GroupModel;
+import com.jiaxun.sdk.dcl.model.ContactPosInGroup;
+import com.jiaxun.uil.R;
+import com.jiaxun.uil.UiApplication;
+import com.jiaxun.uil.ui.fragment.BaseFragment;
+import com.jiaxun.uil.util.ToastUtil;
+import com.jiaxun.uil.util.UiConfigEntry;
+import com.jiaxun.uil.util.UiEventEntry;
+import com.jiaxun.uil.util.UiUtils;
+import com.jiaxun.uil.util.ContactUtil;
+import com.jiaxun.uil.util.eventnotify.EventNotifyHelper;
+
+/**
+ * 说明：添加通讯录联系人/编辑联系人
+ *
+ * @author  hezhen
+ *
+ * @Date 2015-3-11
+ */
+public class ContactAddFragment extends BaseFragment implements OnClickListener
+{
+    private EditText nameEdit;
+    private EditText controlEdit;
+    private Spinner mSpinner;
+    private LinearLayout container;
+    private TextView addPhoneTv;
+    private Button cancelBtn;
+    private Button accomplishBtn;
+    ArrayList<PhoneItem> phoneItems;
+    private ContactModel contactModel;
+    private GroupModel groupModel;
+    /**
+     * 是否为添加联系人 true: 添加联系人 false:编辑联系人
+     */
+    boolean isAdd = false;
+
+    /**
+     * 用户类型 -0 普通用户；1 监控用户
+     */
+    private int userType = 0;
+
+    private ContactModel getNewContact()
+    {
+        if (contactModel == null)
+        {
+            contactModel = new ContactModel();
+        }
+        return contactModel;
+    }
+
+    @Override
+    public void onClick(View v)
+    {
+        int id = v.getId();
+        switch (id)
+        {
+            case R.id.tv_add_new_phone:
+                if (phoneItems.size() >= UiConfigEntry.PHONE_NUM_MAX)
+                {
+                    String notice = String.format(UiApplication.getInstance().getResources().getString(R.string.notice_contact_number_max),
+                            UiConfigEntry.PHONE_NUM_MAX);
+                    ToastUtil.showToast(notice);
+                }
+                else
+                {
+                    addNewPhoneNum();
+                }
+                break;
+            case R.id.btn_create:
+                if (isAdd)
+                {
+                    createNewContact(groupModel);
+                }
+                else
+                {
+                    updateContact();
+                }
+                UiUtils.hideSoftKeyboard(getActivity());
+                break;
+            case R.id.btn_cancel:
+                UiUtils.hideSoftKeyboard(getActivity());
+                EventNotifyHelper.getInstance().postNotificationName(UiEventEntry.SETTING_MODIFY_CONTACT);
+                break;
+        }
+    }
+
+    /**
+     * @param baseListItem isAdd == false Contact; isAdd == true Group
+     * @param isAdd false 修改联系人；true 添加联系人
+     */
+    @Override
+    public void initComponentViews(View view)
+    {
+        parentActivity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        Bundle bundle = getArguments();
+        if (bundle != null)
+        {
+            this.isAdd = bundle.getBoolean("isAdd", true);
+            int id = bundle.getInt("id");
+            int position = bundle.getInt("position");
+            if (isAdd)
+            {
+                groupModel = UiApplication.getContactService().getDepById(id);
+                ContactPosInGroup posGroup = new ContactPosInGroup();
+                posGroup.setParentGroup(groupModel);
+                posGroup.setPosition(position);
+                getNewContact().addPosGroup(posGroup);
+            }
+            else
+            {
+                ContactModel contact = UiApplication.getContactService().getContactById(id);
+                contactModel = contact.clone();
+            }
+
+        }
+        nameEdit = (EditText) view.findViewById(R.id.name_edit);
+        mSpinner = (Spinner) view.findViewById(R.id.spinner1);
+        container = (LinearLayout) view.findViewById(R.id.container);
+        controlEdit = (EditText) view.findViewById(R.id.edt_control_num);
+        addPhoneTv = (TextView) view.findViewById(R.id.tv_add_new_phone);
+        phoneItems = new ArrayList<ContactAddFragment.PhoneItem>();
+        cancelBtn = (Button) view.findViewById(R.id.btn_cancel);
+        accomplishBtn = (Button) view.findViewById(R.id.btn_create);
+
+        addPhoneTv.setOnClickListener(this);
+        cancelBtn.setOnClickListener(this);
+        accomplishBtn.setOnClickListener(this);
+
+        String[] contactTypeArray = parentActivity.getResources().getStringArray(R.array.contact_categary);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(parentActivity, R.layout.simple_spinner_item, contactTypeArray);
+        adapter.setDropDownViewResource(R.layout.adapter_spinner_dropdown_item);
+        mSpinner.setAdapter(adapter);
+
+        if (!isAdd && contactModel != null)
+        {
+            nameEdit.setText(contactModel.getName());
+            ArrayList<ContactNum> phoneList = contactModel.getPhoneNumList();
+            int size = phoneList.size();
+            if (size <= 0)
+            {
+                return;
+            }
+            userType = contactModel.getType();
+            if (isCommonUser())
+            {
+                for (int i = 0; i < size; i++)
+                {
+                    ContactNum contactNum = phoneList.get(i);
+                    PhoneItem phoneItem = addNewPhoneNum();
+                    phoneItem.setPhoneText(contactNum.getNumber());
+                    phoneItem.setPhoneType(contactNum.getType());
+
+                }
+            }
+            else
+            {
+                ContactNum contactNum = phoneList.get(0);
+                controlEdit.setText(contactNum.getNumber());
+            }
+            userTypeSet(userType);
+            mSpinner.setEnabled(false);
+        }
+        else
+        {
+            addNewPhoneNum();
+            mSpinner.setOnItemSelectedListener(new OnItemSelectedListener()
+            {
+
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+                {
+                    userTypeSet(position);
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent)
+                {
+
+                }
+            });
+        }
+
+    }
+
+    private boolean isCommonUser()
+    {
+        return userType == 0;
+    }
+
+    private void userTypeSet(int type)
+    {
+        userType = type;
+        mSpinner.setSelection(type);
+        if (isCommonUser())
+        {
+            addPhoneTv.setVisibility(View.VISIBLE);
+            container.setVisibility(View.VISIBLE);
+            controlEdit.setVisibility(View.GONE);
+        }
+        else
+        {
+            addPhoneTv.setVisibility(View.GONE);
+            container.setVisibility(View.GONE);
+            controlEdit.setVisibility(View.VISIBLE);
+        }
+
+    }
+
+    @Override
+    public int getLayoutView()
+    {
+        return R.layout.fragment_contact_addcontact;
+    }
+
+    /**
+     * 方法说明 :添加新号码
+     * @author HeZhen
+     * @Date 2015-4-22
+     */
+    private PhoneItem addNewPhoneNum()
+    {
+        final PhoneItem phoneItem = new PhoneItem();
+        container.addView(phoneItem.getView());
+        phoneItems.add(phoneItem);
+        phoneItem.setDeletePhoneItem(new DeletePhoneItem()
+        {
+            @Override
+            public void deleteSelf(PhoneItem phoneItem)
+            {
+                container.removeView(phoneItem.getView());
+                phoneItems.remove(phoneItem);
+            }
+        });
+        return phoneItem;
+    }
+
+    /**
+     * 方法说明 :创建新联系人
+     * @author HeZhen
+     * @Date 2015-4-22
+     */
+    private void createNewContact(GroupModel groupModel)
+    {
+        if (groupModel == null)
+        {
+            return;
+        }
+        ContactModel contactModel = new ContactModel();
+        String name = nameEdit.getText().toString();
+        String phoneNum = controlEdit.getText().toString();
+        int type = mSpinner.getSelectedItemPosition();
+
+        if (!verifyInputName(name))
+        {
+            return;
+        }
+        ArrayList<ContactNum> contactNums = new ArrayList<ContactNum>();
+        if (type == 0)// 普通用户
+        {
+            for (PhoneItem phoneItem : phoneItems)
+            {
+                String pNum = phoneItem.getPhoneNum().getNumber();
+                if (!TextUtils.isEmpty(pNum))
+                {
+                    contactNums.add(phoneItem.getPhoneNum());
+                }
+            }
+            if (contactNums.size() <= 0)
+            {
+                ToastUtil.showToast(parentActivity, null, R.string.notice_number_not_null);
+                return;
+            }
+        }
+        else
+        // 监控用户
+        {
+            if (!verifyInputPhone(phoneNum))
+            {
+                return;
+            }
+            contactNums.clear();
+            ContactNum contactNum = new ContactNum();
+            contactNum.setNumber(phoneNum);
+            contactNum.setType("" + 0);
+            contactNums.add(contactNum);
+        }
+        contactModel.setPhoneNumList(contactNums);
+        contactModel.setName(name);
+        contactModel.setType(type);
+        contactModel.setNumber(ContactUtil.contactMaxNum + 1);
+        // 联系人位置加到最后面
+        int position = 0;
+        for (GroupModel group : groupModel.getChildrenDepList())
+        {
+            if (position < group.getPosition())
+            {
+                position = group.getPosition();
+            }
+        }
+        for (ContactModel contact : groupModel.getChildrenContactList())
+        {
+            ContactPosInGroup posGroup = contact.getPosGroup(groupModel.getId());
+            if (posGroup != null && position < posGroup.getPosition())
+            {
+                position = posGroup.getPosition();
+            }
+        }
+        if(position == 0)
+        {
+            position = groupModel.getChildrenContactList().size() + groupModel.getChildrenDepList().size();
+        }else
+        {
+            position ++;    
+        }
+        ContactPosInGroup posGroup = new ContactPosInGroup();
+        posGroup.setPosition(position);
+        posGroup.setParentGroup(groupModel);
+        contactModel.addPosGroup(posGroup);
+        UiApplication.getContactService().addContact(contactModel);
+    }
+
+    /**
+     * 方法说明 : 验证用户号码
+     * @param phoneNum
+     * @return
+     * @author HeZhen
+     * @Date 2015-7-9
+     */
+    private boolean verifyInputPhone(String phoneNum)
+    {
+        if (TextUtils.isEmpty(phoneNum))
+        {
+            ToastUtil.showToast(parentActivity, null, R.string.notice_number_not_null);
+            return false;
+        }
+        else if (phoneNum.equals(UiApplication.getConfigService().getAccountNumber()))
+        {
+            ToastUtil.showToast("添加号码非法");
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * 方法说明 :验证输入名称
+     * @param name
+     * @return
+     * @author HeZhen
+     * @Date 2015-7-9
+     */
+    private boolean verifyInputName(String name)
+    {
+        if (TextUtils.isEmpty(name))
+        {
+            ToastUtil.showToast(parentActivity, null, R.string.notice_name_not_null);
+            return false;
+        }
+        if (UiUtils.getLength(name) > UiConfigEntry.CONTACT_NAME_MAX)
+        {
+            String content = String.format(UiApplication.getInstance().getResources().getString(R.string.notice_name_max), UiConfigEntry.CONTACT_NAME_MAX);
+            ToastUtil.showToast(null, content);
+            return false;
+        }
+        return true;
+    }
+
+    private void updateContact()
+    {
+        String name = nameEdit.getText().toString();
+        String phoneNum = controlEdit.getText().toString();
+        int type = mSpinner.getSelectedItemPosition();
+        contactModel.setName(name);
+        contactModel.setType(type);
+        if (!verifyInputName(name))
+        {
+            return;
+        }
+        ArrayList<ContactNum> contactNums = contactModel.getPhoneNumList();
+        contactNums.clear();
+        if (type == 0)
+        {
+            for (PhoneItem phoneItem : phoneItems)
+            {
+                String pNum = phoneItem.getPhoneNum().getNumber();
+                if (!TextUtils.isEmpty(pNum))
+                {
+                    contactNums.add(phoneItem.getPhoneNum());
+                }
+            }
+            if (contactNums.size() <= 0)
+            {
+                ToastUtil.showToast(parentActivity, null, R.string.notice_number_not_null);
+                return;
+            }
+        }
+        else
+        {
+            if (!verifyInputPhone(phoneNum))
+            {
+                return;
+            }
+            ContactNum contactNum = new ContactNum();
+            contactNum.setNumber(phoneNum);
+            contactNum.setType("" + 0);
+            contactNums.add(contactNum);
+        }
+        UiApplication.getContactService().modifyContact(contactModel);
+    }
+
+    /**
+     * 说明： 添加新号码 逻辑
+     *
+     * @Date 2015-5-12
+     */
+    class PhoneItem
+    {
+        View view;
+        ContactNum phoneNum;
+        DeletePhoneItem deletePhoneItem;
+
+        public PhoneItem()
+        {
+            phoneNum = new ContactNum();
+        }
+
+        public ContactNum getPhoneNum()
+        {
+            if (phoneNum == null)
+            {
+                phoneNum = new ContactNum();
+            }
+            return phoneNum;
+        }
+
+        public void setPhoneText(String text)
+        {
+            if (TextUtils.isEmpty(text))
+            {
+                return;
+            }
+            ((EditText) getView().findViewById(R.id.phone_edit)).setText(text);
+            getPhoneNum().setNumber(text);
+        }
+
+        public void setPhoneType(String type)
+        {
+            if (TextUtils.isEmpty(type))
+            {
+                return;
+            }
+            int seletion = Integer.valueOf(type);// - 1;
+            ((Spinner) getView().findViewById(R.id.type_spinner)).setSelection(seletion > 0 ? seletion : 0);
+            getPhoneNum().setType(type);
+        }
+
+        public View getView()
+        {
+            if (view == null)
+            {
+                view = LayoutInflater.from(getActivity()).inflate(R.layout.include_contact_addphone, null);
+                Spinner spinner = (Spinner) view.findViewById(R.id.type_spinner);
+                String[] contactTypeArray = parentActivity.getResources().getStringArray(R.array.phone_all_categary);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(parentActivity, R.layout.simple_spinner_item, contactTypeArray);
+                adapter.setDropDownViewResource(R.layout.adapter_spinner_dropdown_item);
+                spinner.setAdapter(adapter);
+                spinner.setOnItemSelectedListener(new OnItemSelectedListener()
+                {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+                    {
+                        getPhoneNum().setType("" + position);
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent)
+                    {
+
+                    }
+                });
+                ((EditText) view.findViewById(R.id.phone_edit)).addTextChangedListener(new TextWatcher()
+                {
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count)
+                    {
+                        String message = s.toString();
+                        getPhoneNum().setNumber(message);
+                    }
+
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after)
+                    {
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s)
+                    {
+                    }
+                });
+                view.findViewById(R.id.delete).setOnClickListener(new OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        deletePhoneItem.deleteSelf(PhoneItem.this);
+                    }
+                });
+            }
+            return view;
+        }
+
+        public void setDeletePhoneItem(DeletePhoneItem deletePhoneItem)
+        {
+            this.deletePhoneItem = deletePhoneItem;
+        }
+    }
+
+    public interface DeletePhoneItem
+    {
+        void deleteSelf(PhoneItem phoneItem);
+    };
+}

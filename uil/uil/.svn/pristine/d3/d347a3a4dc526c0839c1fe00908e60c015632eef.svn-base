@@ -1,0 +1,119 @@
+package com.jiaxun.setting.fragment;
+
+import android.app.Fragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.TextView;
+
+import com.jiaxun.sdk.util.config.ConfigHelper;
+import com.jiaxun.sdk.util.constant.CommonConstantEntry;
+import com.jiaxun.setting.model.PrefsBaseItem;
+import com.jiaxun.setting.model.PrefsSeekBarItem;
+import com.jiaxun.setting.ui.SettingActivity;
+import com.jiaxun.uil.R;
+import com.jiaxun.uil.util.SystemBrightManager;
+import com.jiaxun.uil.util.UiConfigEntry;
+
+/**
+ * 说明：设置拖动条
+ * 
+ * @author zhangxd
+ * 
+ * @Date 2015-2-28
+ */
+public class PrefsSeekBarFragment extends Fragment implements android.view.View.OnClickListener
+{
+    private static final String TAG = PrefsSeekBarFragment.class.getName();
+
+    private Button saveButton;
+    private Button cancelButton;
+
+    private TextView textViewWhichInfo;
+    private SeekBar seekBar;
+    private PrefsSeekBarItem prefsIntItem;
+    private ConfigHelper configHelper = ConfigHelper.getDefaultConfigHelper(getActivity());
+    private int tmpValue;
+    private int nowValue;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
+        View view = inflater.inflate(R.layout.fragment_seekbar_edit, container, false);
+        saveButton = (Button) view.findViewById(R.id.saveButton);
+        cancelButton = (Button) view.findViewById(R.id.cancelButton);
+        seekBar = (SeekBar) view.findViewById(R.id.valueSeekBar);
+        textViewWhichInfo = (TextView) view.findViewById(R.id.textViewWhichInfo);
+        prefsIntItem = getArguments().getParcelable(CommonConstantEntry.DATA_OBJECT);
+
+        if ((prefsIntItem != null))
+        {
+            setting(prefsIntItem);
+        }
+        saveButton.setOnClickListener(this);
+        cancelButton.setOnClickListener(this);
+        seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener()
+        {
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar)
+            {
+                nowValue = tmpValue;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar)
+            {
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
+            {
+                tmpValue = progress;
+                SystemBrightManager.setBrightness(getActivity(), progress);
+
+            }
+        });
+        return view;
+    }
+
+    @Override
+    public void onClick(View v)
+    {
+        switch (v.getId())
+        {
+            case R.id.saveButton:
+                boolean result = configHelper.putInt(prefsIntItem.getKey(), nowValue);
+                if (prefsIntItem.getItemCallBack() != null)
+                    prefsIntItem.getItemCallBack().onCallBackResult(result);
+                break;
+
+            default:
+                break;
+        }
+
+        ((SettingActivity) getActivity()).backSystemSettingFragment(v.getId());
+    }
+
+    private void setting(final PrefsBaseItem item)
+    {
+        // 设置标题显示修改说明内容
+        textViewWhichInfo.setText(item.getName());
+        seekBar.setMax(prefsIntItem.getMaxValue());
+        if(prefsIntItem.getKey().equals(UiConfigEntry.PREF_SERVICE_SCREEN_BRIGHTNESS))
+        {
+            int systemBrightness=SystemBrightManager.getBrightness(getActivity());
+            nowValue = configHelper.getInt(prefsIntItem.getKey(), systemBrightness);
+           
+        }else
+        {
+            nowValue = configHelper.getInt(prefsIntItem.getKey(), prefsIntItem.getDefaultValue());
+        }
+        seekBar.setProgress(nowValue);
+        tmpValue = nowValue;
+    }
+
+}

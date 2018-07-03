@@ -1,0 +1,50 @@
+package com.jiaxun.setting.model;
+/**
+ * 说明： 单选
+ *
+ * @author  zhangxd
+ *
+ * @Date 2015-6-4
+ */
+public class PrefsGroupRadioItem extends PrefsBaseItem
+{
+    private String[][] radios;
+    private int storeType;
+    /**
+     * @param name key中文名
+     * @param imageId 图片id
+     * @param key key
+     * @param radios 二维数组
+     */
+    public PrefsGroupRadioItem(String name, int imageId, String key, String[][] radios,int storeType,ItemCallBack itemCallBack)
+    {
+        this.name = name;
+        this.imageId = imageId;
+        this.key = key;
+        this.radios = radios;
+        this.itemCallBack = itemCallBack;
+        this.itemType = PrefItemType.RADIO_GROUP;
+        this.storeType=storeType;
+    }
+
+    public String[][] getRadioItems()
+    {
+        return radios;
+    }
+
+    public void setRadioItems(String[][] radioItems)
+    {
+        this.radios = radioItems;
+    }
+
+    public int getStoreType()
+    {
+        return storeType;
+    }
+
+    public void setStoreType(int storeType)
+    {
+        this.storeType = storeType;
+    }
+
+}

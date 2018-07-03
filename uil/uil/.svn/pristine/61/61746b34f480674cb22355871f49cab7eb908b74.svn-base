@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/back_linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/back_call_record_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/call_record_back_selector"/>
+        
+        <TextView
+            android:id="@+id/back_textview"
+            style="@style/fontStyleBlackBig"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingLeft="5dp"
+            android:paddingTop="10dp"
+            android:text="返回"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/conf_member_list"
+        android:layout_width="match_parent"
+        android:layout_below="@id/back_linearlayout"
+        android:layout_above="@+id/all_detail_textview"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:divider="@color/call_record_item_color"
+        android:dividerHeight="1dp"
+        android:scrollbarThumbVertical="@drawable/scollbar_icon"
+        android:scrollbars="vertical" />
+
+     <TextView
+            android:id="@+id/all_detail_textview"
+            style="@style/fontStyleBlackMedium"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:paddingTop="10dp"
+            android:text="查看全部"/>
+</RelativeLayout>

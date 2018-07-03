@@ -1,0 +1,40 @@
+package com.jiaxun.sdk.scl.media.video;
+
+import com.jiaxun.sdk.util.SdkUtil;
+import com.jiaxun.sdk.util.log.Log;
+
+/**
+ * h264±àÂëÆ÷
+ *
+ * @author  fuluo
+ *
+ * @Date 2015-7-27
+ */
+public class H264Encoder
+{
+    private static String TAG = "H264Encoder";
+    
+    private static final String DATA_FOLDER = String.format("/data/data/%s", SdkUtil.getApplicationContext().getPackageName());
+    private static final String LIBS_FOLDER = String.format("%s/lib", H264Encoder.DATA_FOLDER);
+    
+    public static void init()
+    {
+        try
+        {
+            System.load(String.format("%s/%s", H264Encoder.LIBS_FOLDER, "libx264jni.so"));
+//            System.loadLibrary("libx264jni");
+        }
+        catch (Exception ex)
+        {
+            Log.exception(TAG, ex);
+        }
+    }
+
+    public native static long EncodeBegin(int width, int height, String preset, String profile, int rc_type, int rc_param, int threads);
+//    public native static long EncodeBegin(int width, int height);
+    
+    public native static int EncodeEnd(long handle);
+    
+    public native static int EncodeContinue(long handle, int type, byte[] input, byte[] output);
+
+}

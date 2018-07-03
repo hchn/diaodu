@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="horizontal" >
+
+    <com.jiaxun.uil.ui.view.DialPadView
+        android:id="@+id/left_dial_relativelayout"
+        android:layout_width="500dp"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <com.jiaxun.uil.ui.view.DialPadView
+        android:id="@+id/right_dial_relativelayout"
+        android:layout_width="500dp"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+</LinearLayout>

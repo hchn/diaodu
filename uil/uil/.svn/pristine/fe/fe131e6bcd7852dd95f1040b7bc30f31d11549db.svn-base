@@ -1,0 +1,37 @@
+package com.jiaxun.setting.model;
+
+/**
+ * 文本类型，包括：字符文本，密码文本
+ */
+public class PrefsTextItem extends PrefsBaseItem
+{
+    private String defaultValue;// 默认值
+    /**
+     * 普通文本输入类型
+     */
+    public PrefsTextItem(String name, int imageId, int itemType, String key, String defaultValue, String hint,  ItemCallBack itemCallBack)
+    {
+        this.name = name;
+        this.imageId = imageId;
+        this.key = key;
+        this.defaultValue = defaultValue;
+        this.itemCallBack = itemCallBack;
+        this.itemType = itemType;
+        this.defaultValue = defaultValue;
+        this.hint=hint;
+    }
+
+    public String getDefaultValue()
+    {
+        return defaultValue;
+    }
+
+    public void setName(String defaultValue)
+    {
+        this.defaultValue = defaultValue;
+    }
+    public void setDefaultValue(String defaultValue)
+    {
+        this.defaultValue = defaultValue;
+    }
+}

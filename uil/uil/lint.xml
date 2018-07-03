@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="NewApi" severity="ignore">
+        <ignore path="src/com/jiaxun/uil/ui/adapter/VsListAdapter.java" />
+        <ignore path="src/com/jiaxun/uil/ui/fragment/VideoFragment.java" />
+        <ignore path="src/com/jiaxun/uil/ui/screen/HomeActivity.java" />
+    </issue>
+</lint>

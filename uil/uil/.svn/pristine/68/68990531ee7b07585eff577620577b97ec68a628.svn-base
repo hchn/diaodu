@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">T30</string>
+    <string name="title_group_detail">Group Detail</string>
+    <string name="str_lp_android_choice_title">Choose your Android Version</string>
+    <string name="app_copy_right">Copyright © 2015 Jiaxun.All Rights Reserved.</string>
+
+    <string-array name="entries_list_preference">
+        <item>Jelly Bean</item>
+        <item>Ice Cream Sandwich</item>
+        <item>Honey Comb</item>
+        <item>Ginger Bread</item>
+        <item>Froyo</item>
+    </string-array>
+    <string-array name="entryvalues_list_preference">
+        <item>Jelly Bean</item>
+        <item>Ice Cream Sandwich</item>
+        <item>Honey Comb</item>
+        <item>Ginger Bread</item>
+        <item>Froyo</item>
+    </string-array>
+
+    <string name="main_title_top">上标题</string>
+    <string name="main_title_bottom">下标题</string>
+    <string name="main_title_left">左标题</string>
+    <string name="main_title_right">右标题</string>
+    <string name="PassWord">请输入密码</string>
+    <string name="Account">请输入账号</string>
+    <string name="login_hint">用户名1-20位,支持数字、字母、下划线、@符号</string>
+    <string name="pass_hint">密码1-20位,支持数字、字母、下划线</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="faild_password_empty">登录密码不能为空</string>
+    <string name="faild_account_empty">登录账号不能为空</string>
+    <string name="faild_account">请输入正确的登录账号和密码！</string>
+    <string name="setting">设置</string>
+    <string name="call">呼叫</string>
+    <string name="conf">会议</string>
+    <string name="monitor">监控</string>
+    <string name="expand_view">扩展屏</string>
+    <string name="call_log">通話记录</string>
+    <string name="dialer">拨号盘</string>
+    <string name="dnd">免打扰</string>
+    <string name="night_service">夜服</string>
+    <string name="tmp_conf">临时会议</string>
+    <string name="hold">保持</string>
+    <string name="mute">静音</string>
+    <string name="close_ring">闭铃</string>
+    <string name="emergency">紧急呼叫</string>
+    <string name="dialog_default_title">T30多媒体调度终端</string>
+    <string name="dialog_ok">确定</string>
+    <string name="dialog_cancel">取消</string>
+
+    <!-- hz add -->
+    <string name="notice_name_not_null">名字不能为空</string>
+    <string name="notice_number_not_null">号码不能为空</string>
+     <string name="notice_name_max">名字不能超过%1$d个字符</string>
+    <string name="notice_contact_number_max">最多只能%1$d个号码</string>
+    <string name="add_list_manual">手动添加</string>
+    <string name="add_list_from_contact">联系人添加</string>
+    <string name="add_list_from_record">通话记录添加</string>
+    <string name="contact_black_list">黑名单</string>
+    <string name="contact_white_list">白名单</string>
+    <string name="document_name">文件名</string>
+    <string name="file_path">目录</string>
+    <string name="hint_name">姓名</string>
+    <string name="finish">完成</string>
+    <string name="cancel">取消</string>
+    <string name="sure">确认</string>
+    <string name="back">返回</string>
+    <string name="choose_pic">请选择图片</string>
+    <string name="group_name">组名：</string>
+    <string name="add_new_phone">添加新号码</string>
+    <string name="setting_contact_addnewcontact">新建联系人</string>
+    <string name="setting_contact_addnewgroup">新建组</string>
+    <string name="setting_contact_modify">修改</string>
+    <string name="setting_contact_select">选择</string>
+    <string name="setting_contact_selectall">全选</string>
+    <string name="setting_contact_selectall_cancel">取消全选</string>
+    <string name="setting_contact_delete">删除</string>
+    <string name="setting_keyarea_select_again">重新选择</string>
+    <string name="setting_keyarea_selectcontact">添加按键</string>
+    <string name="setting_key_add_contact">添加成员</string>
+    <string name="contact_user_phonenum">用户号码</string>
+    <string name="setting_contact_close">关闭</string>
+    <string name="setting_add_subscribe">添加订阅</string>
+    <string name="dialog_lockscreen_notice">系统正在使用中，由%1$s用户在%2$s锁定。</string>
+    <string name="dialog_lockscreen_password">请输入登录密码：</string>
+    <string name="dialog_lockscreen_unlock">解锁</string>
+    
+    <string name="add_contact_from_address_list">从通讯录添加</string>
+    <string name="add_contact_from_dial">从拨号盘添加</string>
+    <string name="contact_type">用户类型：</string>
+    <string name="contact_name">用户名称：</string>
+    <string name="contact_vs_phone">监控号码</string>
+    <string name="contact_ds_phone">调度台号码</string>
+    <string name="contact_belong_dep">所属部门：</string>
+
+    <!-- 通话记录 -->
+    <string name="all_callrecord">全部</string>
+    <string name="received_callrecord">已接</string>
+    <string name="no_callrecord">未接</string>
+    <string name="dialed_callrecord">已拨</string>
+    <string name="search_callrecord">搜索</string>
+    <string name="peer_name">用户名</string>
+    <string name="peer_num">号码</string>
+    <string name="user"></string>
+    <string name="time">昨天</string>
+    <string name="send_message">发消息</string>
+    <string name="addcontact">添加到通讯录</string>
+    <string name="play_record">播放</string>
+    <string name="local_play_record">本地播放</string>
+    <string name="local_listen_record">本地调听</string>
+    <string name="export_csv_file">导出记录</string>
+    <string name="download">下载</string>
+    <string name="screen">筛选</string>
+    <string name="num_add">添加</string>
+    <string name="clear">清除</string>
+    <string name="conf_num">参会号码</string>
+    
+    <!-- wifi设置 -->
+    <string name="wifi_setting">WIFI设置</string>
+    <string name="signal_strength">信号强度</string>
+    <string name="safety">安全性</string>
+    <string name="wifi_password">密码</string>
+    <string name="wifi_ip_setting">IP设置</string>
+    <string name="wifi_senior_setting">高级设置</string>
+    <string name="wifi_ip_add">IP地址</string>
+    <string name="wifi_getway">网关</string>
+    <string name="wifi_connect">连接</string>
+    <string name="wifi_cancle">取消</string>
+
+</resources>

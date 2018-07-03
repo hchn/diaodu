@@ -1,0 +1,38 @@
+package com.jiaxun.setting.model;
+
+/**
+ * 说明：服务器地址，包括：IP和域名
+ * 
+ * @author zhangxd
+ * 
+ * @Date 2015-6-4
+ */
+public class PrefsServerAddressItem extends PrefsBaseItem
+{
+
+    private String defaultValue;
+    /**
+     * ip文本输入类型
+     */
+    public PrefsServerAddressItem(String name, int imageId, String key, String hint, ItemCallBack itemCallBack, String defaultValue)
+    {
+        this.name = name;
+        this.imageId = imageId;
+        this.key = key;
+        this.defaultValue = defaultValue;
+        this.itemCallBack = itemCallBack;
+        this.itemType = PrefItemType.SERVER_ADDRESS;
+        this.hint=hint;
+    }
+
+    public String getDefaultValue()
+    {
+        return defaultValue;
+    }
+
+    public void setName(String defaultValue)
+    {
+        this.defaultValue = defaultValue;
+    }
+
+}

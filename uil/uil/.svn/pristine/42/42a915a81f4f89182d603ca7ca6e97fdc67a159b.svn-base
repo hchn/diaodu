@@ -1,0 +1,151 @@
+package com.jiaxun.uil.ui.adapter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.jiaxun.sdk.dcl.model.ContactModel;
+import com.jiaxun.sdk.dcl.model.ContactNum;
+import com.jiaxun.uil.R;
+import com.jiaxun.uil.UiApplication;
+import com.jiaxun.uil.util.ServiceUtils;
+
+/**
+ * 说明：用户详情的适配器 号码列表
+ *
+ * @author   hz
+ *
+ * @Date 2015-3-11
+ */
+public class ContactDetailAdapter extends BaseAdapter
+{
+    private ViewHolder mViewHolder;
+    public LayoutInflater mInflater;
+    private List<ContactNum> mDataSource = new ArrayList<ContactNum>();
+    private ContactModel contactModel;
+    String[] phoneType;
+    public boolean isOnlyShow;
+    private Context context;
+
+    public ContactDetailAdapter(Context context)
+    {
+        this.context = context;
+        mInflater = LayoutInflater.from(context);
+        setData(null);
+        phoneType = context.getResources().getStringArray(R.array.phone_all_categary);
+    }
+
+    public void setOnlyShow(boolean isOnlyShow)
+    {
+        this.isOnlyShow = isOnlyShow;
+    }
+
+    public void setData(ContactModel contactModel)
+    {
+        this.contactModel = contactModel;
+        List<ContactNum> dataSrc = contactModel == null ? null : contactModel.getPhoneNumList();
+        if (dataSrc != null)
+        {
+            mDataSource = dataSrc;
+        }
+        else
+        {
+            mDataSource = new ArrayList<ContactNum>();
+        }
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public int getCount()
+    {
+
+        return mDataSource == null ? 0 : mDataSource.size();
+    }
+
+    @Override
+    public Object getItem(int position)
+    {
+        return null;
+    }
+
+    @Override
+    public long getItemId(int position)
+    {
+        return 0;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent)
+    {
+        if (convertView == null)
+        {
+            convertView = mInflater.inflate(R.layout.adapter_contact_detail, null);
+            mViewHolder = new ViewHolder();
+            mViewHolder.userType = (TextView) convertView.findViewById(R.id.detail_user_type);
+            mViewHolder.userNumber = (TextView) convertView.findViewById(R.id.detail_user_number);
+            mViewHolder.phoneCall = (ImageView) convertView.findViewById(R.id.detail_call);
+            convertView.setTag(mViewHolder);
+        }
+        else
+        {
+            mViewHolder = (ViewHolder) convertView.getTag();
+        }
+        ContactNum contactNum = mDataSource.get(position);
+        if (contactNum == null)
+        {
+            return convertView;
+        }
+        if (phoneType != null)
+        {
+            int t = TextUtils.isEmpty(contactNum.getType()) ? 0 : new Integer(contactNum.getType());
+            String type = phoneType[t];
+            mViewHolder.userType.setText(type);
+        }
+        String num = contactNum.getNumber();
+        mViewHolder.userNumber.setText(num);
+        mViewHolder.phoneCall.setTag(num);
+        if (isOnlyShow)
+        {
+            mViewHolder.phoneCall.setVisibility(View.INVISIBLE);
+        }
+        mViewHolder.phoneCall.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+
+                String calleeNum = v.getTag().toString();
+                if (contactModel == null)
+                {
+                    return;
+                }
+                if (contactModel.getType() == 0)
+                {
+                    ServiceUtils.makeCall(context, calleeNum);
+                }
+                else
+                {
+                    UiApplication.getVsService().addVsUser(calleeNum);
+                }
+
+            }
+        });
+        return convertView;
+    }
+
+    class ViewHolder
+    {
+        TextView userType;
+        TextView userNumber;
+        ImageView phoneCall;
+    }
+}

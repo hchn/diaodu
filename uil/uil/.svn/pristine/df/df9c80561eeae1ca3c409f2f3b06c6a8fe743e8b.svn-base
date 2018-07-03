@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textView1"
+            style="@style/fontStyleWhiteBig"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="分屏：" />
+
+        <include
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/textView1"
+            layout="@layout/include_screen_control" />
+        
+        <Button
+            android:id="@+id/btn_video_all_presentation"
+            style="@style/fontStyleWhiteMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="上大屏" />
+        
+    </RelativeLayout>
+
+    <com.jiaxun.uil.ui.view.presentation.VideoFrameView
+        android:id="@+id/screen_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/video_margin" >
+
+        <!-- <FrameLayout
+            android:id="@+id/screen_type1_1"
+            android:layout_width="@dimen/video_type1_width"
+            android:layout_height="@dimen/video_type1_height"
+            android:layout_margin="@dimen/home_vertical_margin"
+            android:background="@drawable/video_bg" >
+        </FrameLayout> -->
+    </com.jiaxun.uil.ui.view.presentation.VideoFrameView>
+
+    <!-- <RelativeLayout
+        android:id="@+id/screen_type4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/video_margin"
+        android:visibility="gone" >
+
+        <FrameLayout
+            android:id="@+id/screen_type4_1"
+            android:layout_width="@dimen/video_type4_width"
+            android:layout_height="@dimen/video_type4_height"
+            android:layout_margin="@dimen/home_vertical_margin"
+            android:background="@drawable/video_bg" >
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/screen_type4_2"
+            android:layout_width="@dimen/video_type4_width"
+            android:layout_height="@dimen/video_type4_height"
+            android:layout_margin="@dimen/home_vertical_margin"
+            android:layout_toEndOf="@id/screen_type4_1"
+            android:layout_toRightOf="@id/screen_type4_1"
+            android:background="@drawable/video_bg" >
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/screen_type4_3"
+            android:layout_width="@dimen/video_type4_width"
+            android:layout_height="@dimen/video_type4_height"
+            android:layout_below="@id/screen_type4_1"
+            android:layout_margin="@dimen/home_vertical_margin"
+            android:background="@drawable/video_bg" >
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/screen_type4_4"
+            android:layout_width="@dimen/video_type4_width"
+            android:layout_height="@dimen/video_type4_height"
+            android:layout_below="@id/screen_type4_2"
+            android:layout_margin="@dimen/home_vertical_margin"
+            android:layout_toEndOf="@id/screen_type4_3"
+            android:layout_toRightOf="@id/screen_type4_3"
+            android:background="@drawable/video_bg" >
+        </FrameLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/screen_type6"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/video_margin" >
+
+        <FrameLayout
+            android:id="@+id/screen_type6_1"
+            android:layout_width="@dimen/video_type6_width_big"
+            android:layout_height="@dimen/video_type6_height_big"
+            android:layout_margin="1dp"
+            android:background="@drawable/video_bg" >
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/screen_type6_2"
+            android:layout_width="@dimen/video_type6_width_small"
+            android:layout_height="@dimen/video_type6_height_small"
+            android:layout_margin="1dp"
+            android:layout_toRightOf="@id/screen_type6_1"
+            android:background="@drawable/video_bg" >
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/screen_type6_3"
+            android:layout_width="@dimen/video_type6_width_small"
+            android:layout_height="@dimen/video_type6_height_small"
+            android:layout_below="@id/screen_type6_2"
+            android:layout_margin="1dp"
+            android:layout_toRightOf="@id/screen_type6_1"
+            android:background="@drawable/video_bg" >
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/screen_type6_4"
+            android:layout_width="@dimen/video_type6_width_small"
+            android:layout_height="@dimen/video_type6_height_small"
+            android:layout_below="@id/screen_type6_3"
+            android:layout_margin="1dp"
+            android:layout_toRightOf="@id/screen_type6_1"
+            android:background="@drawable/video_bg" >
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/screen_type6_5"
+            android:layout_width="@dimen/video_type6_width_small"
+            android:layout_height="@dimen/video_type6_height_small"
+            android:layout_below="@id/screen_type6_1"
+            android:layout_margin="1dp"
+            android:background="@drawable/video_bg" >
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/screen_type6_6"
+            android:layout_width="@dimen/video_type6_width_small"
+            android:layout_height="@dimen/video_type6_height_small"
+            android:layout_below="@id/screen_type6_1"
+            android:layout_margin="1dp"
+            android:layout_toRightOf="@id/screen_type6_5"
+            android:background="@drawable/video_bg" >
+        </FrameLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/screen_type8"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/video_margin"
+        android:visibility="gone" >
+
+        <FrameLayout
+            android:id="@+id/screen_type8_1"
+            android:layout_width="@dimen/video_type8_width_big"
+            android:layout_height="@dimen/video_type8_height_big"
+            android:layout_margin="@dimen/home_vertical_margin"
+            android:background="@drawable/video_bg" >
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/screen_type8_2"
+            android:layout_width="@dimen/video_type8_width_small"
+            android:layout_height="@dimen/video_type8_height_small"
+            android:layout_toRightOf="@id/screen_type8_1"
+            android:background="@drawable/video_bg" >
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/screen_type8_3"
+            android:layout_width="@dimen/video_type8_width_small"
+            android:layout_height="@dimen/video_type8_height_small"
+            android:layout_below="@id/screen_type8_2"
+            android:layout_toRightOf="@id/screen_type8_1"
+            android:background="@drawable/video_bg" >
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/screen_type8_4"
+            android:layout_width="@dimen/video_type8_width_small"
+            android:layout_height="@dimen/video_type8_height_small"
+            android:layout_below="@id/screen_type8_3"
+            android:layout_toRightOf="@id/screen_type8_1"
+            android:background="@drawable/video_bg" >
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/screen_type8_5"
+            android:layout_width="@dimen/video_type8_width_small"
+            android:layout_height="@dimen/video_type8_height_small"
+            android:layout_below="@id/screen_type8_1"
+            android:background="@drawable/video_bg" >
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/screen_type8_6"
+            android:layout_width="@dimen/video_type8_width_small"
+            android:layout_height="@dimen/video_type8_height_small"
+            android:layout_below="@id/screen_type8_1"
+            android:layout_toRightOf="@id/screen_type8_5"
+            android:background="@drawable/video_bg" >
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/screen_type8_7"
+            android:layout_width="@dimen/video_type8_width_small"
+            android:layout_height="@dimen/video_type8_height_small"
+            android:layout_below="@id/screen_type8_1"
+            android:layout_toRightOf="@id/screen_type8_6"
+            android:background="@drawable/video_bg" >
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/screen_type8_8"
+            android:layout_width="@dimen/video_type8_width_small"
+            android:layout_height="@dimen/video_type8_height_small"
+            android:layout_below="@id/screen_type8_4"
+            android:layout_margin="@dimen/home_vertical_margin"
+            android:layout_toRightOf="@id/screen_type8_7"
+            android:background="@drawable/video_bg" >
+        </FrameLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/screen_type9"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/video_margin"
+        android:visibility="gone" >
+
+        <FrameLayout
+            android:id="@+id/screen_type9_1"
+            android:layout_width="@dimen/video_type9_width"
+            android:layout_height="@dimen/video_type9_height"
+            android:layout_margin="@dimen/home_vertical_margin"
+            android:background="@drawable/video_bg" >
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/screen_type9_2"
+            android:layout_width="@dimen/video_type9_width"
+            android:layout_height="@dimen/video_type9_height"
+            android:layout_margin="@dimen/home_vertical_margin"
+            android:layout_toEndOf="@id/screen_type9_1"
+            android:layout_toRightOf="@id/screen_type9_1"
+            android:background="@drawable/video_bg" >
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/screen_type9_3"
+            android:layout_width="@dimen/video_type9_width"
+            android:layout_height="@dimen/video_type9_height"
+            android:layout_margin="@dimen/home_vertical_margin"
+            android:layout_toEndOf="@id/screen_type9_2"
+            android:layout_toRightOf="@id/screen_type9_2"
+            android:background="@drawable/video_bg" >
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/screen_type9_4"
+            android:layout_width="@dimen/video_type9_width"
+            android:layout_height="@dimen/video_type9_height"
+            android:layout_below="@id/screen_type9_1"
+            android:layout_margin="@dimen/home_vertical_margin"
+            android:background="@drawable/video_bg" >
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/screen_type9_5"
+            android:layout_width="@dimen/video_type9_width"
+            android:layout_height="@dimen/video_type9_height"
+            android:layout_below="@id/screen_type9_1"
+            android:layout_margin="@dimen/home_vertical_margin"
+            android:layout_toEndOf="@id/screen_type9_4"
+            android:layout_toRightOf="@id/screen_type9_4"
+            android:background="@drawable/video_bg" >
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/screen_type9_6"
+            android:layout_width="@dimen/video_type9_width"
+            android:layout_height="@dimen/video_type9_height"
+            android:layout_below="@id/screen_type9_1"
+            android:layout_margin="@dimen/home_vertical_margin"
+            android:layout_toEndOf="@id/screen_type9_5"
+            android:layout_toRightOf="@id/screen_type9_5"
+            android:background="@drawable/video_bg" >
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/screen_type9_7"
+            android:layout_width="@dimen/video_type9_width"
+            android:layout_height="@dimen/video_type9_height"
+            android:layout_below="@id/screen_type9_4"
+            android:layout_margin="@dimen/home_vertical_margin"
+            android:background="@drawable/video_bg" >
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/screen_type9_8"
+            android:layout_width="@dimen/video_type9_width"
+            android:layout_height="@dimen/video_type9_height"
+            android:layout_below="@id/screen_type9_4"
+            android:layout_margin="@dimen/home_vertical_margin"
+            android:layout_toEndOf="@id/screen_type9_7"
+            android:layout_toRightOf="@id/screen_type9_7"
+            android:background="@drawable/video_bg" >
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/screen_type9_9"
+            android:layout_width="@dimen/video_type9_width"
+            android:layout_height="@dimen/video_type9_height"
+            android:layout_below="@id/screen_type9_4"
+            android:layout_margin="@dimen/home_vertical_margin"
+            android:layout_toEndOf="@id/screen_type9_8"
+            android:layout_toRightOf="@id/screen_type9_8"
+            android:background="@drawable/video_bg" >
+        </FrameLayout>
+    </RelativeLayout> -->
+
+</LinearLayout>
